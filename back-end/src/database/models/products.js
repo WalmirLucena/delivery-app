@@ -2,7 +2,7 @@
 const Product = (sequelize, DataTypes) => {
   const product = sequelize.define('products', {
     name: DataTypes.STRING,
-    price: DataTypes.NUMBER,
+    price: DataTypes.INTEGER,
     url_image: DataTypes.STRING
   }, {
     tablename: 'products',
