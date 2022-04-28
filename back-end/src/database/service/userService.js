@@ -1,5 +1,4 @@
-import checkPassword from "../utils/checkPassword";
-
+const checkPassword = require("../utils/checkPassword");
 const User = require("../models/user");
 const { createToken } = require("../utils/utilsJWT");
 
@@ -10,7 +9,7 @@ const login = async (data) => {
 
     if(!user) return ({ status: 404, message: 'User already registered' });
 
-   const correctPassword = checkPassword(user.password)
+   const correctPassword = checkPassword(password)
 
    if(!correctPassword) return ({ status: 400 , message: 'Password incorrect' });
 
@@ -25,4 +24,4 @@ const login = async (data) => {
 }
 
 
-export default {login}
+module.exports = {login};

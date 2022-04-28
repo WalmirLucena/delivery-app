@@ -1,4 +1,4 @@
-const { default: userService } = require("../service/userService")
+const userService = require("../service/userService")
 
 const login = async (req,res) => {
     try {
@@ -15,4 +15,4 @@ const login = async (req,res) => {
     }
 }
 
-export default { login };
+module.exports = { login };

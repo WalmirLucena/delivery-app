@@ -8,4 +8,4 @@ const checkPassword = (password) => {
     return true;
 }
 
-export default checkPassword;
+module.exports = checkPassword;
