@@ -8,9 +8,9 @@ const userValidation = async (req, res, next) => {
 
   if (!userRegistered) return res.status(404).json(notFound);
 
- if (!userRegistered.password) return (res.status(400).json(PassIncorrect));
+  if (!userRegistered.password) return (res.status(400).json(PassIncorrect));
 
-const { password, ...user } = userRegistered;
+  const { password, ...user } = userRegistered;
 
   req.body.user = user;
 
