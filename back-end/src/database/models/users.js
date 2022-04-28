@@ -1,7 +1,7 @@
 'use strict';
 
 const User = (sequelize, DataTypes) => {
-  const user = sequelize.define('User', {
+  const user = sequelize.define('users', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
