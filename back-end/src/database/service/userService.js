@@ -1,17 +1,14 @@
-const checkPassword = require("../utils/checkPassword");
 const { users } = require('../models')
 const { createToken } = require("../utils/utilsJWT");
+const checkPassword = require("../utils/checkPassword");
 
 const login = async (data) => {
-    const {email, password} = data;
 
-    const userRegistered = await users.findOne({ where: { email } });
+    const userRegistered = await users.findOne({ where: { email: data.email } });
 
-    if(!userRegistered) return ({ status: 404, message: 'User already registered' });
+    if(!userRegistered) return  false;
 
-   const correctPassword = checkPassword(password, userRegistered.password)
-
-   if(!correctPassword) return ({ status: 400 , message: 'Password incorrect' });
+    const password = checkPassword(data.password, userRegistered.password)
 
     const token = createToken(userRegistered);
 
@@ -19,9 +16,9 @@ const login = async (data) => {
         id: userRegistered.id,
         name: userRegistered.name,
         role: userRegistered.role,
+        password,
         token
     }
 }
-
 
 module.exports = {login};
