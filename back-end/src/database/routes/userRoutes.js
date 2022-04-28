@@ -1,8 +1,13 @@
-const { Router } = require('express');
-const userController = require('../controller/userController')
+const { login }  = require("../controller/userController")
 
-const userRoute = Router();
 
-userRoute.post('/', userController.login);
+const userRouter = [
+  {
+    method: 'post',
+    path: '/login',
+    middleware: [],
+    controller: login,
+  },
+];
 
-module.exports = userRoute
+module.exports = { userRouter };
