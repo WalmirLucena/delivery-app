@@ -1,5 +1,5 @@
 const checkPassword = require("../utils/checkPassword");
-const User = require("../models/user");
+const { User } = require('../models');
 const { createToken } = require("../utils/utilsJWT");
 
 const login = async (data) => {
