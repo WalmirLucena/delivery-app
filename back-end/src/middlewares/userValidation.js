@@ -1,4 +1,4 @@
-const service = require("../service/userService");
+const service = require('../service/userService');
 
 const userValidation = async (req, res, next) => {
 

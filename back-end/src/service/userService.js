@@ -1,6 +1,6 @@
-const { users } = require('../models')
-const { createToken } = require("../utils/utilsJWT");
-const checkPassword = require("../utils/checkPassword");
+const { users } = require('../database/models');
+const { createToken } = require('../utils/utilsJWT');
+const checkPassword = require('../utils/checkPassword');
 
 const login = async (data) => {
 
@@ -16,9 +16,10 @@ const login = async (data) => {
         id: userRegistered.id,
         name: userRegistered.name,
         role: userRegistered.role,
+        email: userRegistered.email,
         password,
         token
     }
 }
 
-module.exports = {login};
+module.exports = { login };
