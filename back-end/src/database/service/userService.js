@@ -8,11 +8,11 @@ const login = async (data) => {
 
     const user = await User.findOne({where: {email}});
 
-    if(!user) return ({ message: 'User already registered' });
+    if(!user) return ({ status: 404, message: 'User already registered' });
 
    const correctPassword = checkPassword(user.password)
 
-   if(!correctPassword) return ({ message: 'Password incorrect' });
+   if(!correctPassword) return ({ status: 400 , message: 'Password incorrect' });
 
     const token = createToken(user);
 
