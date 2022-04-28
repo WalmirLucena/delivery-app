@@ -5,7 +5,7 @@ const userValidation = async (req, res, next) => {
   const userRegistered = await service.login(req.body);
 
   if (!userRegistered) return  (
-    res.status(404).send({ message: 'User already registered' }) 
+    res.status(404).send({ message: 'User not found' }) 
   )
 
  if (!userRegistered.password) return (
@@ -15,6 +15,7 @@ const userValidation = async (req, res, next) => {
 const { password, ...user } = userRegistered;
 
   req.body.user = user;
+
 
 next()
 }

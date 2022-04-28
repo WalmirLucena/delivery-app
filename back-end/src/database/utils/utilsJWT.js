@@ -8,13 +8,17 @@ const createToken = (data) => {
         expiresIn: '1d',
         algorithm: 'HS256',
     })
-    console.log(token)
     return token;
 };
 
 const verifyToken = (token) => {
-    const decoded = verify(token, jwtKey);
-    return decoded;
+    try {
+        const decoded = verify(token, jwtKey);
+        return decoded;
+    }
+    catch(err) {
+        return false;
+    }
 }
 
 module.exports = { createToken, verifyToken}

@@ -1,4 +1,3 @@
-// const userService = require("../service/userService")
 
 const login = async (req,res) => {
 
