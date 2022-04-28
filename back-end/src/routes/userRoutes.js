@@ -1,7 +1,6 @@
 const { login }  = require('../controller/userController');
 const{ userValidation } = require('../middlewares/userValidation');
 
-
 const userRouter = [
   {
     method: 'post',

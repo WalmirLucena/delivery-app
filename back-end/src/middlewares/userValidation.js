@@ -6,18 +6,18 @@ const userValidation = async (req, res, next) => {
 
   if (!userRegistered) return  (
     res.status(404).send({ message: 'User not found' }) 
-  )
+  );
 
- if (!userRegistered.password) return (
+  if (!userRegistered.password) return (
     res.status(400).send({ message: 'Password incorrect' })
- )
+  );
 
-const { password, ...user } = userRegistered;
+  const { id, role, email, name, token } = userRegistered;
 
-  req.body.user = user;
+  req.body.user = {id, role, email, name, token};
 
 
-next()
-}
+  next();
+};
 
 module.exports = { userValidation };
