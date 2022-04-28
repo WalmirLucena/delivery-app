@@ -9,7 +9,7 @@ const login = async (data) => {
 
     if(!userRegistered) return ({ status: 404, message: 'User already registered' });
 
-   const correctPassword = checkPassword(password)
+   const correctPassword = checkPassword(password, userRegistered.password)
 
    if(!correctPassword) return ({ status: 400 , message: 'Password incorrect' });
 
