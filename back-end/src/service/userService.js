@@ -21,4 +21,24 @@ const login = async (data) => {
   };
 };
 
-module.exports = { login };
+const createUser = async (data) => {
+  const { name, email, password, role } = data;
+
+  const userRegistered = await users.findOne({ where: { email } });
+
+  if (userRegistered) return false;
+
+  const newUser = await users.create({ name, email, password, role });
+
+  const token = createToken(newUser);
+  
+  return {
+    id: newUser.id,
+    name,
+    email,
+    role,
+    token,
+  };
+};
+
+module.exports = { login, createUser };
