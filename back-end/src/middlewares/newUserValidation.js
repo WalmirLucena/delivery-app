@@ -1,3 +1,4 @@
+const userSchema = require('../schema/userSchema');
 const service = require('../service/userService');
 
 const newUserValidation = async (req, res, next) => {
@@ -12,4 +13,12 @@ const newUserValidation = async (req, res, next) => {
 next();
 };
 
-module.exports = { newUserValidation };
+const userBodyValidation = async (req, res, next) => {
+    const validation = userSchema.validate(req.body);
+
+    if (validation.error) return res.status(500).json({ message: validation.error.message });
+
+    next();
+};
+
+module.exports = { newUserValidation, userBodyValidation };
