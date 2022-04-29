@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import LoginInput from './LoginInput';
 
 import logo from '../../images/logo.png';
@@ -40,14 +41,13 @@ function Login() {
         >
           LOGIN
         </button>
-        <button
+        <Link
           className="register-button"
-          data-testid="login-submit-btn"
-          // disabled={ !validateEmail() || !validatePassword() }
-          type="submit"
+          data-testid="register-btn"
+          to="/register"
         >
           Ainda não tenho conta
-        </button>
+        </Link>
       </form>
     </div>
   );

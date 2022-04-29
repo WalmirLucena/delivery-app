@@ -25,24 +25,31 @@
 }
 
 .register-button {
-  background: #c2ebd3;
-  border: none;
+  align-items: center;
+  background-color: #35e49b;
+  color: #036B52;
+  display: flex;
+  flex-direction: column;
   border-radius: 0.5rem;
-  color: #256b33;
-  font-size: 1.2rem;
-  margin-top: 5%;
+  justify-content: space-around;
+  transition: all 0.1s;
+  text-decoration: none;
   height: 2.8rem;
   width: 18rem;
+  margin-top: 5%;
 }
 
-.register-button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-  opacity: 0.8;
-}
+/* .register-button > * {
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #141414;
+  font-size: 1.2em;
+  padding: 1.2rem 4rem;
+} */
 
-.register-button:hover {
-  opacity: 0.8;
+.register-button> *:hover {
+  opacity: 0.9;
 }
 
 .login-form {
