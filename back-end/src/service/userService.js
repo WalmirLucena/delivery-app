@@ -1,3 +1,4 @@
+const md5 = require('md5');
 const { users } = require('../database/models');
 const { createToken } = require('../utils/utilsJWT');
 const checkPassword = require('../utils/checkPassword');
@@ -28,7 +29,7 @@ const createUser = async (data) => {
 
   if (userRegistered) return false;
 
-  const newUser = await users.create({ name, email, password, role });
+  const newUser = await users.create({ name, email, password: md5(password), role });
 
   const token = createToken(newUser);
   
