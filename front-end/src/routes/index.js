@@ -1,13 +1,17 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { Login, Register } from '../pages';
 
-export default function Routes() {
+function RoutesApp() {
   return (
-    <Switch>
-      <Route exact path="/login" component={ Login } />
-      <Route path="/register" component={ Register } />
-    </Switch>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={ Login } />
+        <Route path="/register" component={ Register } />
+      </Switch>
+    </BrowserRouter>
   );
 }
+
+export default RoutesApp;
