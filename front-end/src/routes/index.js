@@ -10,6 +10,7 @@ import {
   CustomerOrderDetails,
   SellerOrder,
   SellerOrderDetails,
+  AdminManage,
 } from '../pages';
 
 function RoutesApp() {
@@ -24,6 +25,7 @@ function RoutesApp() {
         <Route path="/customer/order" component={ CustomerOrder } />
         <Route path="/seller/order/:id" component={ SellerOrderDetails } />
         <Route path="/seller/order" component={ SellerOrder } />
+        <Route path="/admin/manage" component={ AdminManage } />
       </Switch>
     </BrowserRouter>
   );
