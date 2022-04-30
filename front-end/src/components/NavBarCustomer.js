@@ -15,18 +15,18 @@ function NavBarCustomer() {
             }
             to="/customer/products"
           >
-            Produtos
+            PRODUTOS
           </Link>
           <Link
             className={ window.location.pathname === '/customer/orders' ? 'active' : '' }
             to="/customer/orders"
           >
-            Meus Pedidos
+            MEUS PEDIDOS
           </Link>
           <Link
             to="/login"
           >
-            Sair
+            SAIR
           </Link>
         </div>
       </nav>

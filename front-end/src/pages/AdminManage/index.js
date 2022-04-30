@@ -1,7 +1,13 @@
 import React from 'react';
+import NavBarAdmin from '../../components/NavBarAdmin';
 
 function AdminManage() {
-  return <div>Admin Manage</div>;
+  return (
+    <>
+      <NavBarAdmin />
+      <h1>Admin Manage</h1>
+    </>
+  );
 }
 
 export default AdminManage;
