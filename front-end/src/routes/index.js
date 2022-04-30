@@ -23,8 +23,8 @@ function RoutesApp() {
         <Route path="/customer/checkout" component={ CustomerCheckout } />
         <Route path="/custumer/order/:id" component={ CustomerOrderDetails } />
         <Route path="/customer/order" component={ CustomerOrder } />
-        <Route path="/seller/order/:id" component={ SellerOrderDetails } />
-        <Route path="/seller/order" component={ SellerOrder } />
+        <Route path="/seller/orders/:id" component={ SellerOrderDetails } />
+        <Route path="/seller/orders" component={ SellerOrder } />
         <Route path="/admin/manage" component={ AdminManage } />
       </Switch>
     </BrowserRouter>
