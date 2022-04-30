@@ -1,6 +1,12 @@
 import React from 'react';
+import NavBarCustomer from '../../components/NavBarCustomer';
 
 function CustomerProduct() {
-  return <div>Customer Products</div>;
+  return (
+    <>
+      <NavBarCustomer />
+      <h1>Customer Products</h1>
+    </>
+  );
 }
 export default CustomerProduct;
