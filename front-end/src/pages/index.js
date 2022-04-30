@@ -5,6 +5,7 @@ import CustomerCheckout from './CustomerCheckout';
 import CustomerOrder from './CustomerOrder';
 import CustomerOrderDetails from './CustomerOrderDetails';
 import SellerOrder from './SellerOrder';
+import SellerOrderDetails from './SellerOrderDetails';
 
 export {
   Login,
@@ -14,4 +15,5 @@ export {
   CustomerOrder,
   CustomerOrderDetails,
   SellerOrder,
+  SellerOrderDetails,
 };

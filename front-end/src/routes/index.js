@@ -9,6 +9,7 @@ import {
   CustomerOrder,
   CustomerOrderDetails,
   SellerOrder,
+  SellerOrderDetails,
 } from '../pages';
 
 function RoutesApp() {
@@ -19,8 +20,9 @@ function RoutesApp() {
         <Route path="/register" component={ Register } />
         <Route path="/customer/products" component={ CustomerProduct } />
         <Route path="/customer/checkout" component={ CustomerCheckout } />
-        <Route path="/customer/order" component={ CustomerOrder } />
         <Route path="/custumer/order/:id" component={ CustomerOrderDetails } />
+        <Route path="/customer/order" component={ CustomerOrder } />
+        <Route path="/seller/order/:id" component={ SellerOrderDetails } />
         <Route path="/seller/order" component={ SellerOrder } />
       </Switch>
     </BrowserRouter>
