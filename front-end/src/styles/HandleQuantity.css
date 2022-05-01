@@ -1,0 +1,29 @@
+.quantity-controls {
+  background-color: rgb(210, 205, 205);
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+  width:calc(160px - 1.5rem);
+}
+
+.quantity-controls-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(160px - 1.5rem);
+  margin-bottom: 1rem;
+}
+
+.quantity-controls-button {
+  display: flex;
+  background-color: #036B52;
+  color: aliceblue;
+  align-items: center;
+  justify-content: center;
+  width: calc(160px - 1.5rem);
+  height: calc(50px - 1.5rem);
+  margin-bottom: 1rem;
+}

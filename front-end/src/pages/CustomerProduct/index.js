@@ -1,11 +1,18 @@
 import React from 'react';
 import NavBarCustomer from '../../components/NavBarCustomer';
+import ProductCard from '../../components/ProductCard';
+
+import mockProducts from '../../mockProducts';
 
 function CustomerProduct() {
   return (
     <>
       <NavBarCustomer />
-      <h1>Customer Products</h1>
+      <div className="products-container">
+        { mockProducts.map((product, index) => (
+          <ProductCard key={ index } { ...product } />
+        )) }
+      </div>
     </>
   );
 }

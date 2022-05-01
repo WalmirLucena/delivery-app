@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/HandleQuantity.css';
 
 function HandleQuantity(
   // quantity,
