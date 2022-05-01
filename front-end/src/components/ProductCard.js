@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import HandleQuantity from './HandleQuantity';
 
 function ProductCard({ price, name, image }) {
   return (
@@ -16,7 +17,7 @@ function ProductCard({ price, name, image }) {
         <div className="product-card-name">
           <h3>{ name }</h3>
         </div>
-        {/* input addCart */}
+        <HandleQuantity />
       </div>
     </>
   );

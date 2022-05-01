@@ -22,7 +22,7 @@ function RoutesApp() {
         <Route path="/customer/products" component={ CustomerProduct } />
         <Route path="/customer/checkout" component={ CustomerCheckout } />
         <Route path="/custumer/order/:id" component={ CustomerOrderDetails } />
-        <Route path="/customer/order" component={ CustomerOrder } />
+        <Route path="/customer/orders" component={ CustomerOrder } />
         <Route path="/seller/orders/:id" component={ SellerOrderDetails } />
         <Route path="/seller/orders" component={ SellerOrder } />
         <Route path="/admin/manage" component={ AdminManage } />
