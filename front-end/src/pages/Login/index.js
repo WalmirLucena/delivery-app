@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import LoginInput from './LoginInput';
-import requestLogin from '../../services/requests';
+import { requestLogin } from '../../services/requests';
 
 import logo from '../../images/logo.png';
 import './Login.css';
+import DeliveryContext from '../../context/DeliveryContext';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setUser } = useContext(DeliveryContext);
+  const history = useHistory();
+  const senha = '$#zebirita#$';
+  const adm = '--adm2@21!!--'
 
   const validateEmail = () => {
     const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -20,9 +25,26 @@ function Login() {
     return password.length > MIN_PASSWORD;
   };
 
+  const verifyResponse = (response) => {
+    const { role } = response;
+    if (role === 'customer') return `/${role}/products`;
+    if (role === 'seller') return `/${role}/orders`;
+    if (role === 'administrator') return '/admin/manage';
+    return false;
+  };
+
   const login = async (event) => {
     event.preventDefault();
-    await requestLogin(endpoint, { email, password });
+    // try {
+      const endpoint = '/login';
+      console.log('daqui');
+      const response = await requestLogin(endpoint, { email, password });
+      console.log('aqui')
+      setUser(response);
+      history.push(verifyResponse(response));
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
   };
 
   return (
@@ -44,7 +66,7 @@ function Login() {
           data-testid="login-submit-btn"
           disabled={ !validateEmail() || !validatePassword() }
           type="submit"
-          onClick={ (event) => login(event)}
+          onClick={ (event) => login(event) }
         >
           LOGIN
         </button>

@@ -10,6 +10,8 @@ export const setToken = (token) => {
 
 export const requestLogin = async (endpoint, body) => {
   const response = await api.post(endpoint, body);
+  console.log(response);
+  if(response.status !== 200) return { message: 'Erro, tente novamente'}
   return response.data;
 };
 
