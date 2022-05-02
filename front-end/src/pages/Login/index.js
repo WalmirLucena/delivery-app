@@ -35,16 +35,13 @@ function Login() {
 
   const login = async (event) => {
     event.preventDefault();
-    // try {
       const endpoint = '/login';
-      console.log('daqui');
       const response = await requestLogin(endpoint, { email, password });
-      console.log('aqui')
+      if(response.message){
+        alert(response.message);
+      }
       setUser(response);
       history.push(verifyResponse(response));
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
   };
 
   return (
