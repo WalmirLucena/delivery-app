@@ -16,7 +16,7 @@ next();
 const userBodyValidation = async (req, res, next) => {
     const validation = userSchema.validate(req.body);
 
-    if (validation.error) return res.status(500).json({ message: validation.error.message });
+    if (validation.error) return res.status(400).json({ message: validation.error.message });
 
     next();
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LoginInput from './LoginInput';
+import requestLogin from '../../services/requests';
 
 import logo from '../../images/logo.png';
 import './Login.css';
@@ -17,6 +18,11 @@ function Login() {
   const validatePassword = () => {
     const MIN_PASSWORD = 6;
     return password.length > MIN_PASSWORD;
+  };
+
+  const login = async (event) => {
+    event.preventDefault();
+    await requestLogin(endpoint, { email, password });
   };
 
   return (
@@ -38,6 +44,7 @@ function Login() {
           data-testid="login-submit-btn"
           disabled={ !validateEmail() || !validatePassword() }
           type="submit"
+          onClick={ (event) => login(event)}
         >
           LOGIN
         </button>
