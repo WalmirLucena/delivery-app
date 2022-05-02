@@ -1,7 +1,7 @@
 const { login } = require('../controller/userController');
 const { userValidation } = require('../middlewares/userValidation');
 
-const userRouter = [
+const loginRouter = [
   {
     method: 'post',
     path: '/login',
@@ -10,4 +10,4 @@ const userRouter = [
   },
 ];
 
-module.exports = { userRouter };
+module.exports = { loginRouter };
