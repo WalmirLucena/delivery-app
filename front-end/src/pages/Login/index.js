@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import LoginInput from './LoginInput';
 import { requestLogin } from '../../services/requests';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import logo from '../../images/logo.png';
 import './Login.css';
@@ -38,7 +40,7 @@ function Login() {
       const endpoint = '/login';
       const response = await requestLogin(endpoint, { email, password });
       if(response.message){
-        alert(response.message);
+        toast.error(response.message);
       }
       setUser(response);
       history.push(verifyResponse(response));
@@ -67,6 +69,9 @@ function Login() {
         >
           LOGIN
         </button>
+        <ToastContainer
+        position="top-center"
+        />
         <Link
           className="register-button"
           data-testid="register-btn"
