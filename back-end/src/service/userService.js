@@ -42,4 +42,7 @@ const createUser = async (data) => {
   };
 };
 
+// Precisa de rota /delete deleteUser
+// Precisa de rota /get AllUsers
+
 module.exports = { login, createUser };
