@@ -21,13 +21,6 @@
   width: 80%;
 }
 
-.register-input {
-  border: none;
-  border-bottom: 1px solid #141414;
-  margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  width: 60%;
-}
 
 .register-input:focus {
   outline: none;
@@ -39,6 +32,6 @@
   opacity: 0.8;
 }
 
-.register-button> *:hover {
+.register-button > *:hover {
   opacity: 0.9;
 }
