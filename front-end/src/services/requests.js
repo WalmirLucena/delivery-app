@@ -9,8 +9,14 @@ export const setToken = (token) => {
 };
 
 export const requestLogin = async (endpoint, body) => {
-  const response = await api.post(endpoint, body);
-  return response.data;
+  try {
+    const response = await api.post(endpoint, body);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response.data;
+    }
+  }
 };
 
 export default api;

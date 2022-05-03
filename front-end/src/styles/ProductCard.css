@@ -15,7 +15,8 @@
 
 .product-card-price {
   font-size: 1.5rem;
-  font-weight: bold;
+
+  /* font-weight: bold; */
   margin: 0.5rem 0;
 }
 
@@ -28,6 +29,7 @@
 
 .product-card-name {
   font-size: 1.25rem;
-  font-weight: bold;
+
+  /* font-weight: bold; */
   margin: 0.5rem 0;
 }

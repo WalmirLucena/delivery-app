@@ -1,13 +1,13 @@
 .header {
   align-items: center;
-  background-color: #036B52;
+  background-color: #036b52;
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
 }
 
 .logo {
-  width: 100px; 
+  width: 100px;
 }
 
 .user-name {
