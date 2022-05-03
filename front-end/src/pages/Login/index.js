@@ -24,7 +24,7 @@ function Login() {
 
   const validatePassword = () => {
     const MIN_PASSWORD = 6;
-    return password.length > MIN_PASSWORD;
+    return password.length >= MIN_PASSWORD;
   };
 
   const verifyResponse = (response) => {
@@ -69,15 +69,19 @@ function Login() {
         >
           LOGIN
         </button>
-        <ToastContainer
-          position="top-center"
-        />
-        <Link
-          className="register-button"
-          data-testid="common_login__button-register"
-          to="/register"
-        >
+        <div data-testid="common_login__element-invalid-email">
+          <ToastContainer
+            data-testid="common_login__element-invalid-email"
+            position="top-center"
+          />
+        </div>
+        <Link className="register-button" to="/register">
           Ainda não tenho conta
+          <button
+            label="botao"
+            type="button"
+            data-testid="common_login__button-register"
+          />
         </Link>
       </form>
     </div>
