@@ -7,7 +7,7 @@ const userValidation = async (req, res, next) => {
 
   const validLogin = loginSchema.validate(req.body);
 
-  if(validLogin.error) return res.status(400).json({ message: validLogin.error.message})
+  if (validLogin.error) return res.status(400).json({ message: validLogin.error.message });
 
   const userRegistered = await service.login(req.body);
 

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import LoginInput from './LoginInput';
 import { requestLogin } from '../../services/requests';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import logo from '../../images/logo.png';
@@ -14,8 +14,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const { setUser } = useContext(DeliveryContext);
   const history = useHistory();
-  const senha = '$#zebirita#$';
-  const adm = '--adm2@21!!--'
+  // const senha = '$#zebirita#$';
+  // const adm = '--adm2@21!!--';
 
   const validateEmail = () => {
     const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -37,13 +37,13 @@ function Login() {
 
   const login = async (event) => {
     event.preventDefault();
-      const endpoint = '/login';
-      const response = await requestLogin(endpoint, { email, password });
-      if(response.message){
-        toast.error(response.message);
-      }
-      setUser(response);
-      history.push(verifyResponse(response));
+    const endpoint = '/login';
+    const response = await requestLogin(endpoint, { email, password });
+    if (response.message) {
+      toast.error(response.message);
+    }
+    setUser(response);
+    history.push(verifyResponse(response));
   };
 
   return (
@@ -70,7 +70,7 @@ function Login() {
           LOGIN
         </button>
         <ToastContainer
-        position="top-center"
+          position="top-center"
         />
         <Link
           className="register-button"
