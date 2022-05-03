@@ -17,7 +17,9 @@ function RoutesApp() {
   return (
     <BrowserRouter>
       <Switch>
-        <Redirect exact from="/" to="/login" />
+        <Route exact path="/">
+          <Redirect to="/login" />
+        </Route>
         <Route exact path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
         <Route path="/customer/products" component={ CustomerProduct } />
