@@ -5,7 +5,7 @@ import LoginInput from './LoginInput';
 import { requestLogin } from '../../services/requests';
 import 'react-toastify/dist/ReactToastify.css';
 
-import logo from '../../images/logo.png';
+// import logo from '../../images/logo.png';
 import './Login.css';
 import DeliveryContext from '../../context/DeliveryContext';
 
@@ -48,7 +48,7 @@ function Login() {
 
   return (
     <div className="login-background">
-      <img alt="logo" className="logo" src={ logo } />
+      {/* <img alt="logo" className="logo" src={ logo } /> */}
       <form className="login-form">
         <LoginInput
           name="email"
@@ -62,7 +62,7 @@ function Login() {
         />
         <button
           className="login-button"
-          data-testid="login-submit-btn"
+          data-testid="common_login__button-login"
           disabled={ !validateEmail() || !validatePassword() }
           type="submit"
           onClick={ (event) => login(event) }
@@ -74,7 +74,7 @@ function Login() {
         />
         <Link
           className="register-button"
-          data-testid="register-btn"
+          data-testid="common_login__button-register"
           to="/register"
         >
           Ainda não tenho conta
