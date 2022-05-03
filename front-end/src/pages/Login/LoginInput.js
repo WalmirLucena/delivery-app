@@ -5,7 +5,7 @@ export default function LoginInput({ name, onChange, value }) {
   return (
     <input
       className="login-input"
-      data-testid={ `${name}-input` }
+      data-testid={ `common_login__input-${name}` }
       id={ name }
       name={ name }
       onChange={ onChange }

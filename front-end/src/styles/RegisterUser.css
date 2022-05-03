@@ -1,9 +1,11 @@
 .register-form {
+
   /* align-items: center; */
   background: #e5efe9;
   border-radius: 0.5rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   display: flex;
+
   /* display: inline-block; */
   justify-content: space-around;
   left: 10%;
@@ -15,16 +17,16 @@
 .btn-register {
   align-items: center;
   background-color: #35e49b;
-  color: #036B52;
+  border-radius: 0.5rem;
+  color: #036b52;
   display: flex;
   flex-direction: column;
-  border-radius: 0.5rem;
-  justify-content: space-around;
-  transition: all 0.1s;
-  text-decoration: none;
   height: 2.8rem;
-  width: 11rem;
+  justify-content: space-around;
   margin-top: 2%;
+  text-decoration: none;
+  transition: all 0.1s;
+  width: 11rem;
 }
 
 .input-name {
