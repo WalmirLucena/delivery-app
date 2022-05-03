@@ -1,4 +1,5 @@
 import Login from './Login';
+import Home from './Home';
 import Register from './Register';
 import CustomerProduct from './CustomerProduct';
 import CustomerCheckout from './CustomerCheckout';
@@ -9,6 +10,7 @@ import SellerOrderDetails from './SellerOrderDetails';
 import AdminManage from './AdminManage';
 
 export {
+  Home,
   Login,
   Register,
   CustomerProduct,
