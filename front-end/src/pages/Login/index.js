@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import LoginInput from './LoginInput';
-import { requestLogin } from '../../services/requests';
+import { request } from '../../services/requests';
 import 'react-toastify/dist/ReactToastify.css';
 
-// import logo from '../../images/logo.png';
+import logo from '../../images/logo.png';
 import './Login.css';
 import DeliveryContext from '../../context/DeliveryContext';
 
@@ -38,7 +38,7 @@ function Login() {
   const login = async (event) => {
     event.preventDefault();
     const endpoint = '/login';
-    const response = await requestLogin(endpoint, { email, password });
+    const response = await request(endpoint, { email, password }, 'post');
     if (response.message) {
       toast.error(response.message);
     }
@@ -48,7 +48,7 @@ function Login() {
 
   return (
     <div className="login-background">
-      {/* <img alt="logo" className="logo" src={ logo } /> */}
+      <img alt="logo" className="logo" src={ logo } />
       <form className="login-form">
         <LoginInput
           name="email"
@@ -78,7 +78,7 @@ function Login() {
         <Link className="register-button" to="/register">
           Ainda não tenho conta
           <button
-            label="botao"
+            label="button"
             type="button"
             data-testid="common_login__button-register"
           />
