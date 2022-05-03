@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import {
   Login,
@@ -17,6 +17,7 @@ function RoutesApp() {
   return (
     <BrowserRouter>
       <Switch>
+        <Redirect exact from="/" to="/login" />
         <Route exact path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
         <Route path="/customer/products" component={ CustomerProduct } />
