@@ -3,8 +3,13 @@ const { users } = require('../database/models');
 const { createToken } = require('../utils/utilsJWT');
 const checkPassword = require('../utils/checkPassword');
 
+const getOneUser = async (email) => {
+  const userRegistered = await users.findOne({ where: { email } });
+  return userRegistered;
+};
+
 const login = async (data) => {
-  const userRegistered = await users.findOne({ where: { email: data.email } });
+  const userRegistered = await getOneUser(data.email);
 
   if (!userRegistered) return false;
 
@@ -25,7 +30,7 @@ const login = async (data) => {
 const createUser = async (data) => {
   const { name, email, password, role } = data;
 
-  const userRegistered = await users.findOne({ where: { email } });
+  const userRegistered = await getOneUser(email);
 
   if (userRegistered) return false;
 
@@ -45,4 +50,4 @@ const createUser = async (data) => {
 // Precisa de rota /delete deleteUser
 // Precisa de rota /get AllUsers
 
-module.exports = { login, createUser };
+module.exports = { login, createUser, getOneUser };
