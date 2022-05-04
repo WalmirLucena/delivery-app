@@ -55,7 +55,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('sales');
-  }
+
+  down: async(queryInterface) => dropTable('sales'),
+
 };
