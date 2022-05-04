@@ -11,6 +11,15 @@ const User = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
+  user.associate = (models) => {
+    user.hasOne(models.sales, {
+      foreignKey: 'user_id', as: 'sales',
+    });
+    user.hasOne(models.sales, {
+      foreignKey: 'seller_id', as: 'sales'
+    })
+  }
+
   return user;
 };
 
