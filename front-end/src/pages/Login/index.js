@@ -42,6 +42,7 @@ function Login() {
     if (response.message) {
       toast.error(response.message);
     }
+    console.log('login', response);
     setUser(response);
     history.push(verifyResponse(response));
   };

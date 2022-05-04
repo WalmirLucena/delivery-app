@@ -8,8 +8,9 @@ const { Provider } = DeliveryContext;
 function DeliveryProvider({ children }) {
   const [delivery, setDelivery] = useState(null);
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState([]);
 
-  const value = { delivery, setDelivery, user, setUser };
+  const value = { delivery, setDelivery, user, setUser, cart, setCart };
 
   return (
     <Provider value={ value }>
