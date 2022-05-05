@@ -4,7 +4,7 @@ const create = async (data) => {
     const { userId,
         sellerId, 
         totalPrice,
-        deliveryAdress, 
+        deliveryAddress, 
         deliveryNumber, 
         status } = data;
 
@@ -12,7 +12,7 @@ const create = async (data) => {
         userId, 
         sellerId, 
         totalPrice, 
-        deliveryAdress, 
+        deliveryAddress, 
         deliveryNumber, 
         status });
 
