@@ -1,4 +1,4 @@
-const { createUser } = require('../controller/userController');
+const { create } = require('../controller/saleController');
 const { saleBodyValidation } = require('../middlewares/saleValidation');
 
 const salesRouter = [
@@ -6,7 +6,7 @@ const salesRouter = [
     method: 'post',
     path: '/sales',
     middleware: [saleBodyValidation],
-    controller: createUser,
+    controller: create,
   },
 ];
 
