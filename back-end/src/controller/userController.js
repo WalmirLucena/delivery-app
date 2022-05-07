@@ -8,7 +8,7 @@ const createUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-    const users = await UserService.deleteUser(req.body);
+    const users = await UserService.deleteUser(req.params);
     return res.status(200).json(users);
 };
 

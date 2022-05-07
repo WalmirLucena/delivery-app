@@ -14,7 +14,7 @@ const getOneUser = async (email) => {
 };
 
 const getById = async (id) => {
-  const userRegistered = await users.findById(id);
+  const userRegistered = await users.findByPk(id);
   return userRegistered; 
 };
 
@@ -58,7 +58,12 @@ const createUser = async (data) => {
 };
 
 const deleteUser = async (data) => {
-  await users.delete(data.id);
+  await users.destroy({ 
+    where: {
+      id: data.id, 
+    }, 
+  });
+
   const listUsers = await getAllUsers();
   return listUsers;
 };

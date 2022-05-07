@@ -5,12 +5,12 @@ const userRouter = [
   {
     method: 'get',
     path: '/user',
-    middleware: [idValidation],
+    middleware: [],
     controller: getAllUsers,
   },
   {
     method: 'delete',
-    path: '/user',
+    path: '/user/:id',
     middleware: [idValidation],
     controller: deleteUser,
   },
