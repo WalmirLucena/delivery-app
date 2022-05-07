@@ -13,6 +13,11 @@ const getOneUser = async (email) => {
   return userRegistered;
 };
 
+const getById = async (id) => {
+  const userRegistered = await users.findById(id);
+  return userRegistered; 
+};
+
 const login = async (data) => {
   const userRegistered = await getOneUser(data.email);
 
@@ -58,4 +63,10 @@ const deleteUser = async (data) => {
   return listUsers;
 };
 
-module.exports = { login, createUser, getOneUser, getAllUsers, deleteUser };
+module.exports = { 
+  login, 
+  createUser, 
+  getOneUser, 
+  getAllUsers, 
+  deleteUser, 
+  getById };
