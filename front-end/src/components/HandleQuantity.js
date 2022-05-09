@@ -1,32 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../styles/HandleQuantity.css';
 
 function HandleQuantity(
-  // quantity,
-  // incrementQuantity,
-  // decrementQuantity,
+  {
+    quantity,
+    addQuantity,
+    // decreaseQuantity,
+  },
 ) {
   return (
     <div className="quantity-controls">
       <button
         type="button"
         className="quantity-controls-button"
-        // onClick={ decrementQuantity }
+        // onClick={ () => addQuantity() }
       >
         -
       </button>
       <span className="quantity-controls-quantity">
-        0
+        { quantity }
       </span>
       <button
         type="button"
         className="quantity-controls-button"
-        // onClick={ incrementQuantity }
+        onClick={ addQuantity }
       >
         +
       </button>
     </div>
   );
 }
+
+HandleQuantity.propTypes = {
+  addQuantity: PropTypes.func.isRequired,
+  // decreaseQuantity: PropTypes.func.isRequired,
+  quantity: PropTypes.objectOf(Number).isRequired,
+};
 
 export default HandleQuantity;
