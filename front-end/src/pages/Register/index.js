@@ -11,7 +11,6 @@ function Register() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const { setNewUser } = useContext(DeliveryContext);
-  const history = useHistory();
 
   const validateName = () => {
     const MIN_NAME_LENGTH = 12;
@@ -28,21 +27,20 @@ function Register() {
     return password.length > MIN_PASSWORD;
   };
 
-  const verifyResponse = async (response) => {
+ /*  const verifyResponse = async (response) => {
     const { role } = response;
     if (role === 'register') return '/login';
     return false;
-  };
+  }; */
 
   const register = async (event) => {
     event.preventDefault();
     const endpoint = '/register';
-    const response = await request(endpoint, { fullName, email, password }, 'post');
+    const response = await request(endpoint, { name: fullName, email, password, role: 'customer' }, 'post');
     if (response.message) {
       toast.error(response.message);
     }
     setNewUser(response);
-    history.push(verifyResponse(response));
   };
 
   return (
