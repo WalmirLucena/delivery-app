@@ -1,11 +1,25 @@
-import React from 'react';
-import NavBarCustomer from '../../components/NavBarCustomer';
+import React, { useEffect } from 'react';
+import NavBarSeller from '../../components/NavBarSeller';
+import OrderCard from '../../components/OrderCard';
+import { request } from '../../services/requests';
 
 function CustomerOrder() {
+  const [orders, setOrders] = React.useState([]);
+
+  const fetchData = async () => {
+    const endpoint = '/products';
+    const response = await request(endpoint, {}, 'get');
+    setOrders(response);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
-      <NavBarCustomer />
-      <h1>Customer Orders</h1>
+      <NavBarSeller />
+      { orders.map((order) => <OrderCard key={ order.id } order={ order } />)}
     </>
   );
 }

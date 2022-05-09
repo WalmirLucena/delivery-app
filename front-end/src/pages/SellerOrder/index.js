@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from 'react';
 import NavBarSeller from '../../components/NavBarSeller';
 import OrderCard from '../../components/OrderCard';
 import { request } from '../../services/requests';
 
 function SellerOrder() {
-
   const [orders, setOrders] = React.useState([]);
- 
-  useEffect( async () => {
-      const endpoint = '/products';
-      const response = await request(endpoint, {}, 'get');
-      setOrders(response);
+
+  const fetchData = async () => {
+    const endpoint = '/products';
+    const response = await request(endpoint, {}, 'get');
+    setOrders(response);
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return (
     <>
       <NavBarSeller />
-      { orders.map(order =>  <OrderCard key={order.id} order={order} /> )}
+      { orders.map((order) => <OrderCard key={ order.id } order={ order } />)}
     </>
   );
 }

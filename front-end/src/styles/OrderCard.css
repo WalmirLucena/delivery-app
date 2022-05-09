@@ -36,9 +36,19 @@
 
 .order-status {
   align-items: center;
-  background-color: gray;
+  background-color: #43c391;
   cursor: pointer;
   display: flex;
+  margin: 5px;
+  padding: 10px;
+}
+
+.order-details {
+  align-items: center;
+  background-color: #3498db;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
   margin: 5px;
   padding: 10px;
 }
