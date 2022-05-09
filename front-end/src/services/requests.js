@@ -8,9 +8,9 @@ export const setToken = (token) => {
   api.defaults.headers.common.Authorization = token;
 };
 
-export const requestLogin = async (endpoint, body) => {
+export const request = async (endpoint, body, method) => {
   try {
-    const response = await api.post(endpoint, body);
+    const response = await api[method](endpoint, body);
     return response.data;
   } catch (error) {
     if (error.response) {
