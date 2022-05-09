@@ -16,14 +16,17 @@ const create = async (data) => {
         deliveryNumber, 
         status });
 
+
     return newSale;
 };
 
 const getById = async (data) => {
     const { id } = data;
-    const sale = await sales.getById(id);
+    const sale = await sales.findByPk(id);
 
     return sale;
 };
+
+// getByUserId
 
 module.exports = { create, getById };
