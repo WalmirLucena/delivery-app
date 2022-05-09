@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
+import { request } from '../../services/requests';
 import RegisterInput from './RegisterInput';
 import DeliveryContext from '../../context/DeliveryContext';
 import 'react-toastify/dist/ReactToastify.css';
