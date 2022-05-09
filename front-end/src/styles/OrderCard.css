@@ -52,3 +52,13 @@
   margin: 5px;
   padding: 10px;
 }
+
+.order-address {
+  align-items: center;
+  background-color: #dca014;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 10px;
+}

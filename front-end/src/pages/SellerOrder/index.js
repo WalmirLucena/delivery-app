@@ -19,7 +19,11 @@ function SellerOrder() {
   return (
     <>
       <NavBarSeller />
-      { orders.map((order) => <OrderCard key={ order.id } order={ order } />)}
+      { orders.map((order) => (<OrderCard
+        key={ order.id }
+        order={ order }
+        path="seller"
+      />))}
     </>
   );
 }
