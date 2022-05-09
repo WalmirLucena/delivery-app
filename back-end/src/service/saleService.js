@@ -16,7 +16,6 @@ const create = async (data) => {
         deliveryNumber, 
         status });
 
-
     return newSale;
 };
 
