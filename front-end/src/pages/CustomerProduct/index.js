@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { request } from '../../services/requests';
 import NavBarCustomer from '../../components/NavBarCustomer';
 import ProductCard from '../../components/ProductCard';
-import { request } from '../../services/requests';
+import DeliveryContext from '../../context/DeliveryContext';
 
 const getAllProducts = async () => {
   const endpoint = '/products';
@@ -16,6 +17,7 @@ const getAllProducts = async () => {
 
 function CustomerProduct() {
   const [products, setProducts] = useState([]);
+  const { cart, setCart, newItem } = useContext(DeliveryContext);
   useEffect(() => {
     async function fetchData() {
       const apiAnser = await getAllProducts();
@@ -23,6 +25,29 @@ function CustomerProduct() {
     }
     fetchData();
   }, []);
+
+  const createCart = async () => {
+    let newCart = cart;
+    if (!newCart) newCart = [newItem];
+    const exists = newCart.some((element) => element.name === newItem.name);
+    if (exists) {
+      const array = newCart.reduce((acc, valor, index) => {
+        if (valor.name === newItem.name) {
+          acc[index] = newItem;
+        } else {
+          acc[index] = valor;
+        }
+        return acc;
+      }, []);
+      await setCart(array);
+    }
+    if (!exists) await setCart([...cart, newItem]);
+    return console.log(cart);
+  };
+
+  useEffect(() => {
+    createCart();
+  }, [newItem]);
 
   return (
     <>

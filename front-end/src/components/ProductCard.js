@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 import HandleQuantity from './HandleQuantity';
 import DeliveryContext from '../context/DeliveryContext';
 
-function ProductCard({ price, name, image, quantity }) {
-  const [itemCart, setItem] = useState({ name, price, quantity: 0 });
-  const { setCart, cart } = useContext(DeliveryContext);
+function ProductCard({ id, price, name, image }) {
+  const [itemCart, setItem] = useState({ id, name, price, quantity: 0 });
+  const { setNewItem } = useContext(DeliveryContext);
 
   const addQuantity = async () => {
-    await setItem({ name, price, quantity: itemCart.quantity + 1 });
-    if (cart === []) await setCart([...cart, { name, price, quantity }]); // não tá funcionando ainda;
-    return console.log(itemCart); // provisório
+    setItem({ id, name, price, quantity: itemCart.quantity + 1 });
+    setNewItem({ id, name, price, quantity: itemCart.quantity + 1 });
+    return itemCart; // provisório
   };
+
+  // const removeQuantity = async () => {
+  //   setItem({ id, name, price, quantity: itemCart.quantity - 1 });
+  //   setNewItem({ id, name, price, quantity: itemCart.quantity - 1 });
+  //   return itemCart; // provisório
+  // };
 
   return (
     <>
@@ -37,7 +43,7 @@ ProductCard.propTypes = {
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default ProductCard;

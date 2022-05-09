@@ -6,7 +6,6 @@ import '../styles/Header.css';
 
 function Header() {
   const { user } = useContext(DeliveryContext);
-  console.log(user);
   return (
     <div className="header">
       <img alt="Logo Delivery" className="logo" src={ logo } />
