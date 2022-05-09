@@ -1,29 +1,31 @@
 'use strict';
 const Sale = (sequelize, DataTypes) => {
   const sale = sequelize.define('sales', {
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER, foreignKey: true,
     },
-    seller_id: {
+    sellerId: {
       type: DataTypes.INTEGER, foreignKey: true,
     },
-    total_price: DataTypes.INTEGER,
-    delivery_address: DataTypes.STRING,
-    delivery_number: DataTypes.STRING,
-    sale_date: DataTypes.DATE,
+    totalPrice: DataTypes.DECIMAL,
+    deliveryAddress: DataTypes.STRING,
+    deliveryNumber: DataTypes.STRING,
+    saleDate: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
     status: DataTypes.STRING
   }, {
     tablename: 'sales',
-    underscore: true,
     timestamps: false   
   });
   
   sale.associate = (models) => {
-    sale.belongsTo(models.users, {
-      foreignKey: 'user_id', as: 'user',
-    });
-    sale.belongsTo(models.users, {
-      foreignKey: 'seller_id', as: 'seller',
+    sale.hasMany(models.users, { foreignKey: "id", as: "users" });
+
+    sale.belongsTo(models.salesProducts, {
+      foreignKey: "saleId",
+      as: "sales",
     });
   };
   
