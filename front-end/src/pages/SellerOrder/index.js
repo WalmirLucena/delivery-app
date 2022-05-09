@@ -8,17 +8,15 @@ function SellerOrder() {
   const [orders, setOrders] = React.useState([]);
  
   useEffect( async () => {
-      const endpoint = '/orders';
+      const endpoint = '/products';
       const response = await request(endpoint, {}, 'get');
       setOrders(response);
   }, []);
 
-  console.log(orders);
-
   return (
     <>
       <NavBarSeller />
-      <OrderCard />
+      { orders.map(order =>  <OrderCard key={order.id} order={order} /> )}
     </>
   );
 }
