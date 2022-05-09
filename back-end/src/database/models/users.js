@@ -11,14 +11,14 @@ const User = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  user.associate = (models) => {
+/*   user.associate = (models) => {
     user.hasOne(models.sales, {
-      foreignKey: 'user_id', as: 'users',
+      foreignKey: 'userId', as: 'users',
     });
     user.hasOne(models.sales, {
-      foreignKey: 'seller_id', as: 'sales'
+      foreignKey: 'sellerId', as: 'sales'
     })
-  }
+  } */
 
   return user;
 };

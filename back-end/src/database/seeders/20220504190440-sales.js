@@ -5,12 +5,12 @@ module.exports = {
     await queryInterface.bulkInsert('sales',
       [{
         id:1,
-        user_id:1,
-        seller_id: 2,
-        total_price: 23,
-        delivery_address: 'Rua sem saida',
-        delivery_number: '1000',
-        sale_date: '2022-05-05',
+        userId:1,
+        sellerId: 2,
+        totalPrice: 23,
+        deliveryAddress: 'Rua sem saida',
+        deliveryNumber: '1000',
+        saleDate: '2022-05-05',
         status: 'ok',
       },
 ], { timestamps: false });

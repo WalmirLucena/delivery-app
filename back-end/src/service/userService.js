@@ -3,9 +3,19 @@ const { users } = require('../database/models');
 const { createToken } = require('../utils/utilsJWT');
 const checkPassword = require('../utils/checkPassword');
 
+const getAllUsers = async () => {
+  const usersList = await users.findAll();
+  return usersList;
+};
+
 const getOneUser = async (email) => {
   const userRegistered = await users.findOne({ where: { email } });
   return userRegistered;
+};
+
+const getById = async (id) => {
+  const userRegistered = await users.findByPk(id);
+  return userRegistered; 
 };
 
 const login = async (data) => {
@@ -47,7 +57,21 @@ const createUser = async (data) => {
   };
 };
 
-// Precisa de rota /delete deleteUser
-// Precisa de rota /get AllUsers
+const deleteUser = async (data) => {
+  await users.destroy({ 
+    where: {
+      id: data.id, 
+    }, 
+  });
 
-module.exports = { login, createUser, getOneUser };
+  const listUsers = await getAllUsers();
+  return listUsers;
+};
+
+module.exports = { 
+  login, 
+  createUser, 
+  getOneUser, 
+  getAllUsers, 
+  deleteUser, 
+  getById };
