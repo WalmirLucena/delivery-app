@@ -10,7 +10,7 @@ function Register() {
   const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const { setNewUser } = useContext(DeliveryContext);
+  const { setUser } = useContext(DeliveryContext);
   const history = useHistory();
 
   const validateName = () => {
@@ -36,7 +36,7 @@ function Register() {
     if (response.message) {
       toast.error(response.message);
     }
-    setNewUser(response);
+    setUser(response);
     if (!response.message) {
       history.push('/customer/products');
     }

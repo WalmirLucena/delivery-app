@@ -17,6 +17,10 @@ function Login() {
   // const senha = '$#zebirita#$';
   // const adm = '--adm2@21!!--';
 
+  const saveLocalStorage = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+  };
+
   const validateEmail = () => {
     const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     return re.test(String(email).toLowerCase());
@@ -44,6 +48,7 @@ function Login() {
     }
     console.log('login', response);
     setUser(response);
+    saveLocalStorage(response);
     history.push(verifyResponse(response));
   };
 

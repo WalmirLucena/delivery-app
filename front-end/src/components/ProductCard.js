@@ -23,18 +23,28 @@ function ProductCard({ id, price, name, image, quantity }) {
   return (
     <>
       <div className="product-card">
-        <div className="product-card-price">
+        <div
+          data-testid={ `customer_products__element-card-price-${id}` }
+          className="product-card-price"
+        >
           <h3>{ `R$${price}` }</h3>
         </div>
-        <div className="product-card-image">
+        <div
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          className="product-card-image"
+        >
           <img src={ image } alt={ name } />
         </div>
       </div>
       <div>
-        <div className="product-card-name">
+        <div
+          className="product-card-name"
+          data-testid={ `customer_products__element-card-title-${id}` }
+        >
           <h3>{ name }</h3>
         </div>
         <HandleQuantity
+          id={ id }
           quantity={ itemCart.quantity }
           addQuantity={ addQuantity }
           decreaseQuantity={ removeQuantity }
@@ -49,7 +59,7 @@ ProductCard.propTypes = {
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default ProductCard;
