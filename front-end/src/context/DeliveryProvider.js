@@ -22,7 +22,7 @@ function DeliveryProvider({ children }) {
     newItem,
     setNewItem,
     newUser,
-    setNewUser
+    setNewUser,
   };
 
   return (

@@ -11,43 +11,30 @@ const getAllProducts = async () => {
     acc[index] = { ...valor, quantity: 0 };
     return acc;
   }, []);
-  console.log(response); // tem que tirar depois ,mas agora tá útil;
   return response;
 };
 
 function CustomerProduct() {
   const [products, setProducts] = useState([]);
-  const { cart, setCart, newItem } = useContext(DeliveryContext);
+  const { setCart, newItem } = useContext(DeliveryContext);
   useEffect(() => {
     async function fetchData() {
-      const apiAnser = await getAllProducts();
-      setProducts(apiAnser);
+      const apiAnswer = await getAllProducts();
+      setProducts(apiAnswer);
     }
     fetchData();
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const createCart = async () => {
-    let newCart = cart;
-    if (!newCart) newCart = [newItem];
-    const exists = newCart.some((element) => element.name === newItem.name);
-    if (exists) {
-      const array = newCart.reduce((acc, valor, index) => {
-        if (valor.name === newItem.name) {
-          acc[index] = newItem;
-        } else {
-          acc[index] = valor;
-        }
-        return acc;
-      }, []);
-      await setCart(array);
-    }
-    if (!exists) await setCart([...cart, newItem]);
-    return console.log(cart);
+    const product = products.find((element) => element.name === newItem.name);
+    product.quantity = newItem.quantity;
+    await setCart(products);
   };
 
   useEffect(() => {
     createCart();
-  }, [newItem]);
+  }, [createCart, newItem]);
 
   return (
     <>

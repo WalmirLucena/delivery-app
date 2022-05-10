@@ -3,21 +3,22 @@ import PropTypes from 'prop-types';
 import HandleQuantity from './HandleQuantity';
 import DeliveryContext from '../context/DeliveryContext';
 
-function ProductCard({ id, price, name, image }) {
-  const [itemCart, setItem] = useState({ id, name, price, quantity: 0 });
+function ProductCard({ id, price, name, image, quantity }) {
+  const [itemCart, setItem] = useState({ id, name, price, quantity });
   const { setNewItem } = useContext(DeliveryContext);
 
   const addQuantity = async () => {
     setItem({ id, name, price, quantity: itemCart.quantity + 1 });
     setNewItem({ id, name, price, quantity: itemCart.quantity + 1 });
-    return itemCart; // provisório
+    return itemCart;
   };
 
-  // const removeQuantity = async () => {
-  //   setItem({ id, name, price, quantity: itemCart.quantity - 1 });
-  //   setNewItem({ id, name, price, quantity: itemCart.quantity - 1 });
-  //   return itemCart; // provisório
-  // };
+  const removeQuantity = async () => {
+    // https://stackoverflow.com/questions/53986315/how-to-prevent-state-increment-decrement-counter-going-below-1
+    setItem({ id, name, price, quantity: Math.max(0, itemCart.quantity - 1) });
+    setNewItem({ id, name, price, quantity: Math.max(0, itemCart.quantity - 1) });
+    return itemCart;
+  };
 
   return (
     <>
@@ -33,13 +34,18 @@ function ProductCard({ id, price, name, image }) {
         <div className="product-card-name">
           <h3>{ name }</h3>
         </div>
-        <HandleQuantity quantity={ itemCart.quantity } addQuantity={ addQuantity } />
+        <HandleQuantity
+          quantity={ itemCart.quantity }
+          addQuantity={ addQuantity }
+          decreaseQuantity={ removeQuantity }
+        />
       </div>
     </>
   );
 }
 
 ProductCard.propTypes = {
+  quantity: PropTypes.number.isRequired,
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
