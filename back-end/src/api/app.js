@@ -7,6 +7,8 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static('public'));
+app.use('/images', express.static('images'));
 
 routes.forEach((route) => {
   const { method, path, middleware, controller, 
