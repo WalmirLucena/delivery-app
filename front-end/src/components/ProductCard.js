@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import HandleQuantity from './HandleQuantity';
 import DeliveryContext from '../context/DeliveryContext';
 
-function ProductCard({ id, price, name, image, quantity }) {
+function ProductCard({ id, price, name, url_image: urlImage, quantity }) {
   const [itemCart, setItem] = useState({ id, name, price, quantity });
   const { setNewItem } = useContext(DeliveryContext);
 
@@ -19,7 +19,6 @@ function ProductCard({ id, price, name, image, quantity }) {
     setNewItem({ id, name, price, quantity: Math.max(0, itemCart.quantity - 1) });
     return itemCart;
   };
-
   return (
     <>
       <div className="product-card">
@@ -33,7 +32,7 @@ function ProductCard({ id, price, name, image, quantity }) {
           data-testid={ `customer_products__img-card-bg-image-${id}` }
           className="product-card-image"
         >
-          <img src={ image } alt={ name } />
+          <img src={ urlImage } alt={ name } />
         </div>
       </div>
       <div>
@@ -58,7 +57,7 @@ ProductCard.propTypes = {
   quantity: PropTypes.number.isRequired,
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  url_image: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
 };
 
