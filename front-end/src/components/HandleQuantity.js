@@ -6,7 +6,7 @@ function HandleQuantity(
   {
     quantity,
     addQuantity,
-    // decreaseQuantity,
+    decreaseQuantity,
   },
 ) {
   return (
@@ -14,7 +14,7 @@ function HandleQuantity(
       <button
         type="button"
         className="quantity-controls-button"
-        // onClick={ () => addQuantity() }
+        onClick={ decreaseQuantity }
       >
         -
       </button>
@@ -34,7 +34,7 @@ function HandleQuantity(
 
 HandleQuantity.propTypes = {
   addQuantity: PropTypes.func.isRequired,
-  // decreaseQuantity: PropTypes.func.isRequired,
+  decreaseQuantity: PropTypes.func.isRequired,
   quantity: PropTypes.objectOf(Number).isRequired,
 };
 
