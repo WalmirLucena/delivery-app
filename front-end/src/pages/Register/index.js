@@ -37,7 +37,9 @@ function Register() {
       toast.error(response.message);
     }
     setNewUser(response);
-    history.push('/customer/products');
+    if (!response.message) {
+      history.push('/customer/products');
+    }
   };
 
   return (
@@ -77,5 +79,4 @@ function Register() {
     </div>
   );
 }
-
 export default Register;

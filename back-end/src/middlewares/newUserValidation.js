@@ -6,7 +6,7 @@ const newUserValidation = async (req, res, next) => {
 
   const newUser = await service.getOneUser(req.body.email);
 
-  if (newUser) return (res.status(400).json(userRegistered));
+  if (newUser) return (res.status(409).json(userRegistered));
 
   req.body.user = newUser;
 
