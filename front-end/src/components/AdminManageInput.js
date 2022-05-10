@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function AdminManageInput({ name, onChange, value }) {
+export default function AdminManageInput({ name, onChange, value, placeholder }) {
   return (
     <input
       className="admin-manage-input"
@@ -9,15 +9,16 @@ export default function AdminManageInput({ name, onChange, value }) {
       id={ name }
       name={ name }
       onChange={ onChange }
-      placeholder={ name.charAt(0).toUpperCase() + name.slice(1) }
+      placeholder={ placeholder }
       type={ name }
       value={ value }
     />
   );
 }
 
-RegisterAdminInput.propTypes = {
+AdminManageInput.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
