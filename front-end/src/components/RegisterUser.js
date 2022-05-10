@@ -15,7 +15,7 @@ function UserRegister() {
     if (response.message) {
       toast.error(response.message);
     } else {
-      toast.sucess('Usuário cadastrado com sucesso!!');
+      toast.success('Usuário cadastrado com sucesso!!');
     }
   };
 
