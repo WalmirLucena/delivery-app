@@ -14,8 +14,9 @@ function ProductCard({ id, price, name, image, quantity }) {
   };
 
   const removeQuantity = async () => {
-    setItem({ id, name, price, quantity: itemCart.quantity - 1 });
-    setNewItem({ id, name, price, quantity: itemCart.quantity - 1 });
+    // https://stackoverflow.com/questions/53986315/how-to-prevent-state-increment-decrement-counter-going-below-1
+    setItem({ id, name, price, quantity: Math.max(0, itemCart.quantity - 1) });
+    setNewItem({ id, name, price, quantity: Math.max(0, itemCart.quantity - 1) });
     return itemCart;
   };
 
