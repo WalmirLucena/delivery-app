@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { request } from '../../services/requests';
 import RegisterInput from './RegisterInput';
@@ -10,10 +11,11 @@ function Register() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const { setNewUser } = useContext(DeliveryContext);
+  const history = useHistory();
 
   const validateName = () => {
     const MIN_NAME_LENGTH = 12;
-    return fullName.length > MIN_NAME_LENGTH;
+    return fullName.length >= MIN_NAME_LENGTH;
   };
 
   const validateEmail = () => {
@@ -23,7 +25,7 @@ function Register() {
 
   const validatePassword = () => {
     const MIN_PASSWORD = 6;
-    return password.length > MIN_PASSWORD;
+    return password.length >= MIN_PASSWORD;
   };
 
   const register = async (event) => {
@@ -35,6 +37,7 @@ function Register() {
       toast.error(response.message);
     }
     setNewUser(response);
+    history.push('/customer/products');
   };
 
   return (
@@ -42,7 +45,7 @@ function Register() {
       <h1>Faça seu Cadastro!</h1>
       <form className="register-form">
         <RegisterInput
-          name="fullName"
+          name="name"
           onChange={ ({ target }) => setFullName(target.value) }
           value={ fullName }
         />
@@ -58,7 +61,7 @@ function Register() {
         />
         <button
           className="register-button"
-          data-testid="register-submit-btn"
+          data-testid="common_register__button-register"
           disabled={ !validateEmail() || !validatePassword() || !validateName() }
           onClick={ (event) => register(event) }
           type="submit"
@@ -67,7 +70,6 @@ function Register() {
         </button>
         <div data-testid="common_register__element-invalid_register">
           <ToastContainer
-            data-testid="common_login__element-invalid-email"
             position="top-center"
           />
         </div>
