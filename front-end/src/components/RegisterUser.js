@@ -4,6 +4,7 @@ import '../styles/RegisterUser.css';
 function UserRegister() {
   return (
     <div className="user-register">
+
       <div>
         <h1>Cadastrar novo usuário</h1>
       </div>
@@ -11,17 +12,17 @@ function UserRegister() {
         <input
           type="text"
           placeholder="Name"
-          data-testid="common_register__input-name"
+          data-testid="admin_manage__input-name"
           className="input-name"
         />
         <input
           type="text"
           placeholder="Email"
-          data-testid="common_register__input-email"
+          data-testid="admin_manage__input-email"
           className="input-email"
         />
         <input
-          data-testid="common_register__input-password"
+          data-testid="admin_manage__input-password"
           type="password"
           placeholder="Password"
           className="input-password"
@@ -34,7 +35,7 @@ function UserRegister() {
         <button
           type="submit"
           className="btn-register"
-          data-testid="common_register__button-register"
+          data-testid="admin_manage__button-register"
         >
           CADASTRAR
         </button>
