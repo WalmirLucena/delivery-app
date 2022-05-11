@@ -5,7 +5,7 @@ function CartList() {
   const [itensCart, setItensCart] = useState([]);
   const [subTotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);
-  console.log(subTotal);
+
   const getItens = () => {
     const itens = localStorage.getItem('carrinho');
     const ans = JSON.parse(itens);
@@ -14,40 +14,51 @@ function CartList() {
   useEffect(() => {
     getItens();
   }, []);
+
+  const calcTotal = () => {
+    let ctotal = 0;
+    itensCart.map((item) => {
+      ctotal += item.price * item.quantity;
+      return ctotal;
+    });
+    setTotal(ctotal.toFixed(2));
+  };
+
+  const calcSubTotal = () => {
+    const sum = itensCart.reduce((acc, value) => {
+      acc[value.name] = ((value.quantity * value.price).toFixed(2).replace(/\./, ','));
+      return acc;
+    }, {});
+    setSubtotal(sum);
+  };
+
   useEffect(() => {
     calcSubTotal();
     calcTotal();
-  }, [itensCart]);
+  }, [calcSubTotal, calcTotal, itensCart]);
+
   const removeItem = (item) => {
     const newItens = itensCart.filter((i) => i.id !== item.id);
     console.log(newItens);
     setItensCart(newItens);
   };
-  const calcTotal = () => {
-    let total = 0;
-    itensCart.map((item) => {
-      total += item.price * item.quantity;
-    }
-    );
-    setTotal(total.toFixed(2));
-  }
-  const calcSubTotal = () => {
-    const sum = itensCart.reduce((acc, value) => {
-      acc[value.name] = value.quantity * value.price
-      return acc
-    }, {})
-    setSubtotal(sum);
-  }
+
   return (
     <div className="cart-list-background">
       <div className="cart-list-title">
         <h2> Finalizar Pedido </h2>
       </div>
       <div className="cart-list-container">
-        { itensCart.map((item, index) => (
+        {itensCart && itensCart.map((item, index) => (
           <div className="cart-list-content-item" key={ index }>
             <div className="cart-list-content-item-number">
-              <span>{ index }</span>
+              <span
+                data-testid={
+                  `customer_checkout__element-order-table-item-number-${index}`
+                }
+              >
+                { index + 1}
+              </span>
             </div>
             <div
               className="cart-list-content-item-name"
@@ -57,21 +68,35 @@ function CartList() {
             </div>
             <div
               className="cart-list-content-item-quantitiy"
-              data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
             >
-              <span>{ item.quantidade }</span>
+              <span
+                data-testid={
+                  `customer_checkout__element-order-table-quantity-${index}`
+                }
+              >
+                { item.quantity }
+
+              </span>
             </div>
             <div
               className="cart-list-content-item-price"
-              data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
             >
-              <span>{ item.price }</span>
+              <span
+                data-testid={
+                  `customer_checkout__element-order-table-unit-price-${index}`
+                }
+              >
+                { item.price.replace(/\./, ',') }
+
+              </span>
             </div>
             <div
               className="cart-list-content-item-subtotal"
-              data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+              data-testid={
+                `customer_checkout__element-order-table-sub-total-${index}`
+              }
             >
-              <span>{ subTotal[item.name] }</span>
+              <span>{ subTotal && subTotal[item.name] }</span>
             </div>
             <button
               className="remove-btb"
@@ -88,8 +113,8 @@ function CartList() {
         className="total-price"
         data-testid="customer_checkout__element-order-total-price"
       >
-        <h2>{ `Total: R$` }</h2>
-        <h2>{ total }</h2>
+        <h2>Total: R$</h2>
+        <h2>{ total && total.replace(/\./, ',') }</h2>
       </div>
     </div>
   );

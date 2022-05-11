@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/FormAddressCheckout.css';
-function FormAdressCheckout() { 
+
+function FormAdressCheckout() {
   return (
     <div className="from-adress-checkout">
       <div className="from-adress-checkout-title">
@@ -16,20 +17,24 @@ function FormAdressCheckout() {
           <option value="3">Vendedora 3</option>
         </select>
         <div className="from-adress-checkout-content-input">
-          <label htmlFor="address">Endereço</label>
-          <input
-            data-testid="customer_checkout__input-address"
-            type="text"
-            id="address"
-          />
+          <label htmlFor="address">
+            Endereço
+            <input
+              data-testid="customer_checkout__input-address"
+              type="text"
+              id="address"
+            />
+          </label>
         </div>
         <div className="from-adress-checkout-content-input">
-          <label htmlFor="number">Número</label>
-          <input
-            id="number"
-            data-testid="customer_checkout__input-addressNumber"
-            type="text"
-          />
+          <label htmlFor="number">
+            Número
+            <input
+              id="number"
+              data-testid="customer_checkout__input-addressNumber"
+              type="text"
+            />
+          </label>
         </div>
       </form>
       <div>
