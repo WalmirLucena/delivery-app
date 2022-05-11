@@ -10,6 +10,7 @@ const create = async (data) => {
         await salesProducts.create(salesProduct);
         return salesProduct;
     });
+    await Promise.all(newSalesProduct);
 
     return newSalesProduct;
 };
