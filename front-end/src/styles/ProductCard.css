@@ -20,6 +20,7 @@
   justify-content: center;
   width: 190px;
 }
+
 .products-sidebar {
   display: flex;
   float: left;
@@ -27,6 +28,7 @@
   margin-top: 30px;
   width: 20%;
 }
+
 .cart {
   color: #036b52;
   font-size: 14px;
@@ -34,6 +36,7 @@
   height: 50px;
   width: 90%;
 }
+
 .product-card-name {
   font-size: 11px;
 }
