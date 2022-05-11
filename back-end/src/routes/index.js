@@ -10,6 +10,7 @@ const routes = [
     ...registerRouter,
     ...productRouter,
     ...salesRouter,
-    ...userRouter];
+    ...userRouter,
+    ...saleProductRouter];
 
 module.exports = { routes };

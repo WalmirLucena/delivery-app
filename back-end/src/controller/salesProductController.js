@@ -5,4 +5,4 @@ const create = async (req, res) => {
     return res.status(201).json(result);
 };
 
-module.export = { create };
+module.exports = { create };
