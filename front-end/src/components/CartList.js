@@ -1,0 +1,97 @@
+import React, { useEffect, useState } from 'react';
+import '../styles/CartList.css';
+
+function CartList() {
+  const [itensCart, setItensCart] = useState([]);
+  const [subTotal, setSubtotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  console.log(subTotal);
+  const getItens = () => {
+    const itens = localStorage.getItem('carrinho');
+    const ans = JSON.parse(itens);
+    setItensCart(ans);
+  };
+  useEffect(() => {
+    getItens();
+  }, []);
+  useEffect(() => {
+    calcSubTotal();
+    calcTotal();
+  }, [itensCart]);
+  const removeItem = (item) => {
+    const newItens = itensCart.filter((i) => i.id !== item.id);
+    console.log(newItens);
+    setItensCart(newItens);
+  };
+  const calcTotal = () => {
+    let total = 0;
+    itensCart.map((item) => {
+      total += item.price * item.quantity;
+    }
+    );
+    setTotal(total.toFixed(2));
+  }
+  const calcSubTotal = () => {
+    const sum = itensCart.reduce((acc, value) => {
+      acc[value.name] = value.quantity * value.price
+      return acc
+    }, {})
+    setSubtotal(sum);
+  }
+  return (
+    <div className="cart-list-background">
+      <div className="cart-list-title">
+        <h2> Finalizar Pedido </h2>
+      </div>
+      <div className="cart-list-container">
+        { itensCart.map((item, index) => (
+          <div className="cart-list-content-item" key={ index }>
+            <div className="cart-list-content-item-number">
+              <span>{ index }</span>
+            </div>
+            <div
+              className="cart-list-content-item-name"
+              data-testid={ `customer_checkout__element-order-table-name-${index}` }
+            >
+              <span>{ item.name }</span>
+            </div>
+            <div
+              className="cart-list-content-item-quantitiy"
+              data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+            >
+              <span>{ item.quantidade }</span>
+            </div>
+            <div
+              className="cart-list-content-item-price"
+              data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+            >
+              <span>{ item.price }</span>
+            </div>
+            <div
+              className="cart-list-content-item-subtotal"
+              data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+            >
+              <span>{ subTotal[item.name] }</span>
+            </div>
+            <button
+              className="remove-btb"
+              data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+              type="button"
+              onClick={ () => removeItem(item) }
+            >
+              Remover
+            </button>
+          </div>
+        )) }
+      </div>
+      <div
+        className="total-price"
+        data-testid="customer_checkout__element-order-total-price"
+      >
+        <h2>{ `Total: R$` }</h2>
+        <h2>{ total }</h2>
+      </div>
+    </div>
+  );
+}
+export default CartList;
