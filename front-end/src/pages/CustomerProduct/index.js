@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+// import { useHistory } from 'react-router-dom';
 import { request } from '../../services/requests';
 import NavBarCustomer from '../../components/NavBarCustomer';
 import ProductCard from '../../components/ProductCard';
@@ -11,55 +12,71 @@ const getAllProducts = async () => {
     acc[index] = { ...valor, quantity: 0 };
     return acc;
   }, []);
-  console.log(response); // tem que tirar depois ,mas agora tá útil;
   return response;
 };
 
 function CustomerProduct() {
   const [products, setProducts] = useState([]);
-  const { cart, setCart, newItem } = useContext(DeliveryContext);
+  const [price, setPrice] = useState(0);
+  const { cart, setCart, newItem, setNewCart } = useContext(DeliveryContext);
+  // const history = useHistory();
+
+  const saveCartLocalStorage = (listCart) => {
+    localStorage.setItem('carrinho', JSON.stringify(listCart));
+  };
+
   useEffect(() => {
     async function fetchData() {
-      const apiAnser = await getAllProducts();
-      setProducts(apiAnser);
+      const apiAnswer = await getAllProducts();
+      setProducts(apiAnswer);
     }
     fetchData();
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const calculatePrice = () => {
+    const calcPrice = products.reduce((acc, valor) => {
+      acc += valor.price * valor.quantity;
+      return acc;
+    }, 0);
+    setPrice(calcPrice.toFixed(2));
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const createCart = async () => {
-    let newCart = cart;
-    if (!newCart) newCart = [newItem];
-    const exists = newCart.some((element) => element.name === newItem.name);
-    if (exists) {
-      const array = newCart.reduce((acc, valor, index) => {
-        if (valor.name === newItem.name) {
-          acc[index] = newItem;
-        } else {
-          acc[index] = valor;
-        }
-        return acc;
-      }, []);
-      await setCart(array);
+    if (newItem) {
+      const product = products.find((element) => element.name === newItem.name);
+      product.quantity = newItem.quantity;
+      await setCart(products);
     }
-    if (!exists) await setCart([...cart, newItem]);
-    return console.log(cart);
+  };
+
+  const buildCart = () => {
+    const listCart = cart.filter((product) => product.quantity > 0);
+    console.log(listCart);
+    setNewCart(listCart);
+    saveCartLocalStorage(listCart);
+    // history.push('/'); // rota do checkout
   };
 
   useEffect(() => {
     createCart();
-  }, [newItem]);
+    calculatePrice();
+  }, [calculatePrice, createCart, newItem]);
 
   return (
     <>
       <NavBarCustomer />
       <div className="products-container">
         { products.map((product, index) => (
-          <ProductCard key={ index } { ...product } />
+          <ProductCard key={ index } { ...product } number={ index } />
         )) }
       </div>
-      <button type="button">
-        Ver carrinho: R$
-      </button>
+      <div className="products-sidebar">
+        <button className="cart" type="button">
+          Ver carrinho: R$ {price}
+        </button>
+      </div>
     </>
   );
 }

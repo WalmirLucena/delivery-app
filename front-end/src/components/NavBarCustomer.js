@@ -10,6 +10,7 @@ function NavBarCustomer() {
       <nav>
         <div className="links">
           <Link
+            data-testid="customer_products__element-navbar-link-products"
             className={
               window.location.pathname === '/customer/products' ? 'active' : ''
             }
@@ -18,12 +19,14 @@ function NavBarCustomer() {
             PRODUTOS
           </Link>
           <Link
+            data-testid="customer_products__element-navbar-link-orders"
             className={ window.location.pathname === '/customer/orders' ? 'active' : '' }
             to="/customer/orders"
           >
             MEUS PEDIDOS
           </Link>
           <Link
+            data-testid="customer_products__element-navbar-link-logout"
             to="/login"
           >
             SAIR
