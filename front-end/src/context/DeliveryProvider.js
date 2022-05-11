@@ -10,7 +10,7 @@ function DeliveryProvider({ children }) {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState(null);
   const [newItem, setNewItem] = useState(null);
-  const [newUser, setNewUser] = useState(null);
+  const [newCart, setNewCart] = useState(null);
 
   const value = {
     delivery,
@@ -21,8 +21,8 @@ function DeliveryProvider({ children }) {
     setCart,
     newItem,
     setNewItem,
-    newUser,
-    setNewUser,
+    newCart,
+    setNewCart,
   };
 
   return (
