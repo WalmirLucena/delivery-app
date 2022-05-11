@@ -1,5 +1,6 @@
 const UserService = require('../service/userService');
 const { loginSchema } = require('../schema/userSchema');
+const { verifyToken } = require('../utils/utilsJWT');
 
 const userValidation = async (req, res, next) => {
   const notFound = { message: 'User not found' };
@@ -33,4 +34,20 @@ const idValidation = async (req, res, next) => {
   next();
 };
 
-module.exports = { userValidation, idValidation };
+const validateToken = async (req, res, next) => {
+  const { authorization } = req.headers;
+
+  if (!authorization) {
+    return res.status(401).send({ message: 'Token not found' });
+  }
+
+  const validToken = verifyToken(authorization);
+
+  if (!validToken) {
+    return res.status(401).json({ message: 'Expired or invalid token' });
+  }
+  
+next();
+};
+
+module.exports = { userValidation, idValidation, validateToken };

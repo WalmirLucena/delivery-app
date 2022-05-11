@@ -1,5 +1,5 @@
 const { deleteUser, getAllUsers } = require('../controller/userController');
-const { idValidation } = require('../middlewares/userValidation');
+const { idValidation, validateToken } = require('../middlewares/userValidation');
 
 const userRouter = [
   {
@@ -11,7 +11,7 @@ const userRouter = [
   {
     method: 'delete',
     path: '/user/:id',
-    middleware: [idValidation],
+    middleware: [validateToken, idValidation],
     controller: deleteUser,
   },
 ];

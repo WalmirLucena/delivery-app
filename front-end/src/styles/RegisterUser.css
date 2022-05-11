@@ -29,6 +29,11 @@
   width: 11rem;
 }
 
+.user-register {
+  display: flex;
+  flex-flow: row;
+}
+
 .input-name {
   border: none;
   border-bottom: 1px solid #141414;
