@@ -9,7 +9,7 @@ function UserRegister() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('customer');
 
   const setToastify = (response) => {
     if (response.message) {
@@ -22,7 +22,6 @@ function UserRegister() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const newUser = { name, email, password, role };
-    console.log(newUser);
     const endpoint = '/register';
     const response = await request(endpoint, newUser, 'post');
     setToastify(response);
@@ -72,6 +71,7 @@ function UserRegister() {
           name="role"
           value={ role }
           className="select-role"
+          data-testid="admin_manage__select-role"
           onChange={ ({ target }) => setRole(target.value) }
         >
           <option value="customer">Cliente</option>
