@@ -10,8 +10,12 @@ function Register() {
   const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const { setNewUser } = useContext(DeliveryContext);
+  const { setUser } = useContext(DeliveryContext);
   const history = useHistory();
+
+  const saveLocalStorage = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+  };
 
   const validateName = () => {
     const MIN_NAME_LENGTH = 12;
@@ -36,7 +40,8 @@ function Register() {
     if (response.message) {
       toast.error(response.message);
     }
-    setNewUser(response);
+    setUser(response);
+    saveLocalStorage(response);
     if (!response.message) {
       history.push('/customer/products');
     }

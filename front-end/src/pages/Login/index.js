@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import LoginInput from './LoginInput';
@@ -16,6 +16,15 @@ function Login() {
   const history = useHistory();
   // const senha = '$#zebirita#$';
   // const adm = '--adm2@21!!--';
+
+  const saveLocalStorage = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+  };
+
+  const forgetLocalStorage = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
+  };
 
   const validateEmail = () => {
     const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -44,8 +53,13 @@ function Login() {
     }
     console.log('login', response);
     setUser(response);
+    saveLocalStorage(response);
     history.push(verifyResponse(response));
   };
+
+  useEffect(() => {
+    forgetLocalStorage();
+  }, []);
 
   return (
     <div className="login-background">
