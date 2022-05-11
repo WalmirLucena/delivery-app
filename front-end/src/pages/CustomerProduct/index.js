@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { request } from '../../services/requests';
 import NavBarCustomer from '../../components/NavBarCustomer';
 import ProductCard from '../../components/ProductCard';
@@ -19,7 +19,7 @@ function CustomerProduct() {
   const [products, setProducts] = useState([]);
   const [price, setPrice] = useState(0);
   const { cart, setCart, newItem, setNewCart } = useContext(DeliveryContext);
-  // const history = useHistory();
+  const history = useHistory();
 
   const saveCartLocalStorage = (listCart) => {
     localStorage.setItem('carrinho', JSON.stringify(listCart));
@@ -56,7 +56,7 @@ function CustomerProduct() {
     console.log(listCart);
     setNewCart(listCart);
     saveCartLocalStorage(listCart);
-    // history.push('/'); // rota do checkout
+    history.push('/customer/checkout'); // rota do checkout
   };
 
   useEffect(() => {
@@ -72,10 +72,25 @@ function CustomerProduct() {
           <ProductCard key={ index } { ...product } number={ index } />
         )) }
       </div>
-      <button type="button" onClick={ buildCart }>
-        Ver carrinho: R$
-        { price }
-      </button>
+      <div className="products-sidebar">
+        <button
+          data-testid="customer_products__button-cart"
+          disabled={ price === '0.00' }
+          // disabled={ true}
+          onClick={ buildCart }
+          className="cart"
+          type="button"
+        >
+          Ver carrinho:
+          R$
+          <span
+            data-testid="customer_products__checkout-bottom-value"
+          >
+            { price && price.replace(/\./, ',')}
+          </span>
+
+        </button>
+      </div>
     </>
   );
 }

@@ -14,6 +14,12 @@ function ProductCard({ id, price, name, url_image: urlImage, quantity }) {
     return itemCart;
   };
 
+  const insertQuantity = async (event) => {
+    setItem({ id, name, price, quantity: event.target.value });
+    setNewItem({ id, name, price, quantity: event.target.value });
+    return itemCart;
+  };
+
   const removeQuantity = async () => {
     // https://stackoverflow.com/questions/53986315/how-to-prevent-state-increment-decrement-counter-going-below-1
     setItem({ id, name, price, quantity: Math.max(0, itemCart.quantity - 1) });
@@ -51,6 +57,7 @@ function ProductCard({ id, price, name, url_image: urlImage, quantity }) {
           quantity={ itemCart.quantity }
           addQuantity={ addQuantity }
           decreaseQuantity={ removeQuantity }
+          insertQuantity={ insertQuantity }
         />
       </div>
     </div>
