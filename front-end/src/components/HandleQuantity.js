@@ -8,6 +8,7 @@ function HandleQuantity(
     quantity,
     addQuantity,
     decreaseQuantity,
+    insertQuantity,
   },
 ) {
   return (
@@ -20,12 +21,13 @@ function HandleQuantity(
       >
         -
       </button>
-      <span
+      <input
         data-testid={ `customer_products__input-card-quantity-${id}` }
         className="quantity-controls-quantity"
-      >
-        { quantity }
-      </span>
+        value={ quantity }
+        onChange={ insertQuantity }
+      />
+
       <button
         data-testid={ `customer_products__button-card-add-item-${id}` }
         type="button"
@@ -43,6 +45,7 @@ HandleQuantity.propTypes = {
   decreaseQuantity: PropTypes.func.isRequired,
   quantity: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
+  insertQuantity: PropTypes.func.isRequired,
 };
 
 export default HandleQuantity;
