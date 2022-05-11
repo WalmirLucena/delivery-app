@@ -72,10 +72,11 @@ function CustomerProduct() {
           <ProductCard key={ index } { ...product } number={ index } />
         )) }
       </div>
-      <button type="button" onClick={ buildCart }>
-        Ver carrinho: R$
-        { price }
-      </button>
+      <div className="products-sidebar">
+        <button className="cart" type="button">
+          Ver carrinho: R$ {price}
+        </button>
+      </div>
     </>
   );
 }
