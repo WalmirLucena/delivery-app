@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../styles/RegisterUser.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminManageInput from './AdminManageInput';
-import { request } from '../services/requests';
+import { request, setToken } from '../services/requests';
+import DeliveryContext from '../context/DeliveryContext';
 
 function UserRegister() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('customer');
+  const { user } = useContext(DeliveryContext);
 
   const setToastify = (response) => {
     if (response.message) {
@@ -21,7 +23,9 @@ function UserRegister() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(user);
     const newUser = { name, email, password, role };
+    setToken(user.token);
     const endpoint = '/register';
     const response = await request(endpoint, newUser, 'post');
     setToastify(response);
@@ -88,9 +92,11 @@ function UserRegister() {
           CADASTRAR
         </button>
       </form>
-      <ToastContainer
-        position="top-center"
-      />
+      <div data-testid="admin_manage__element-invalid-register">
+        <ToastContainer
+          position="top-center"
+        />
+      </div>
 
     </div>
   );
