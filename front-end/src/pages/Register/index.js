@@ -13,6 +13,10 @@ function Register() {
   const { setUser } = useContext(DeliveryContext);
   const history = useHistory();
 
+  const saveLocalStorage = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+  };
+
   const validateName = () => {
     const MIN_NAME_LENGTH = 12;
     return fullName.length >= MIN_NAME_LENGTH;
@@ -37,6 +41,7 @@ function Register() {
       toast.error(response.message);
     }
     setUser(response);
+    saveLocalStorage(response);
     if (!response.message) {
       history.push('/customer/products');
     }

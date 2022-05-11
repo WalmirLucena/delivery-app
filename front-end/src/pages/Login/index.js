@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import LoginInput from './LoginInput';
@@ -19,6 +19,11 @@ function Login() {
 
   const saveLocalStorage = (user) => {
     localStorage.setItem('user', JSON.stringify(user));
+  };
+
+  const forgetLocalStorage = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
   };
 
   const validateEmail = () => {
@@ -51,6 +56,10 @@ function Login() {
     saveLocalStorage(response);
     history.push(verifyResponse(response));
   };
+
+  useEffect(() => {
+    forgetLocalStorage();
+  }, []);
 
   return (
     <div className="login-background">

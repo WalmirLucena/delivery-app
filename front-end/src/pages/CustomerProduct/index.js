@@ -21,6 +21,10 @@ function CustomerProduct() {
   const { cart, setCart, newItem, setNewCart } = useContext(DeliveryContext);
   // const history = useHistory();
 
+  const saveCartLocalStorage = (listCart) => {
+    localStorage.setItem('carrinho', JSON.stringify(listCart));
+  };
+
   useEffect(() => {
     async function fetchData() {
       const apiAnswer = await getAllProducts();
@@ -51,6 +55,7 @@ function CustomerProduct() {
     const listCart = cart.filter((product) => product.quantity > 0);
     console.log(listCart);
     setNewCart(listCart);
+    saveCartLocalStorage(listCart);
     // history.push('/'); // rota do checkout
   };
 

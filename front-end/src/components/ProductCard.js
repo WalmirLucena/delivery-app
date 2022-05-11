@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import HandleQuantity from './HandleQuantity';
 import DeliveryContext from '../context/DeliveryContext';
+import '../styles/ProductCard.css';
 
 function ProductCard({ id, price, name, url_image: urlImage, quantity }) {
   const [itemCart, setItem] = useState({ id, name, price, quantity });
@@ -20,20 +21,23 @@ function ProductCard({ id, price, name, url_image: urlImage, quantity }) {
     return itemCart;
   };
   return (
-    <>
-      <div className="product-card">
-        <div
-          data-testid={ `customer_products__element-card-price-${id}` }
-          className="product-card-price"
-        >
-          <h3>{ `R$${price}` }</h3>
-        </div>
-        <div
+    <div className="product-card">
+      <div className="product-card-price">
+        <h3>R$</h3>
+        <h3 data-testid={ `customer_products__element-card-price-${id}` }>
+          {price.replace(/\./, ',')}
+          {/* função replace do price retirada do teste */}
+        </h3>
+      </div>
+      <div
+        className="product-card-image"
+      >
+        <img
           data-testid={ `customer_products__img-card-bg-image-${id}` }
-          className="product-card-image"
-        >
-          <img src={ urlImage } alt={ name } />
-        </div>
+          src={ urlImage }
+          width="130"
+          alt={ name }
+        />
       </div>
       <div>
         <div
@@ -49,7 +53,7 @@ function ProductCard({ id, price, name, url_image: urlImage, quantity }) {
           decreaseQuantity={ removeQuantity }
         />
       </div>
-    </>
+    </div>
   );
 }
 
