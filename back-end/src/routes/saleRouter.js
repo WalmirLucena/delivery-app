@@ -6,7 +6,7 @@ const salesRouter = [
   {
     method: 'post',
     path: '/sales',
-    middleware: [],
+    middleware: [validateToken, saleBodyValidation],
     controller: create,
   },
 ];
