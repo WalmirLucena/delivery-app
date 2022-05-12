@@ -39,6 +39,10 @@ const createSale = async (data) => {
     return { newSale, salesProduct };
 };
 
+const getSales = async () => {
+    return sales.findAll();
+};
+
 const getById = async (data) => {
     const { id } = data;
     const sale = await sales.findByPk(id);
@@ -48,4 +52,4 @@ const getById = async (data) => {
 
 // getByUserId
 
-module.exports = { createSale, getById };
+module.exports = { createSale, getById, getSales};

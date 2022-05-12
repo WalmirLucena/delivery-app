@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import '../styles/OrderCard.css';
 
 function OrderCard({
-  newSale: {
+   order: {
     id,
     status,
     saleDate,
@@ -47,7 +47,7 @@ function OrderCard({
 
 OrderCard.propTypes = {
   path: PropTypes.string.isRequired,
-  newSale: PropTypes.shape({
+  order: PropTypes.shape({
     id: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,
     saleDate: PropTypes.string.isRequired,
