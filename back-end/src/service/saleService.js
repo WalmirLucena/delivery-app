@@ -4,7 +4,7 @@ const createSalesProduct = async (data, id) => {
     const newSalesProduct = data.map(async (value) => {
         const salesProduct = { 
             quantity: value.quantity,
-            productId: value.productId,
+            productId: value.id,
             saleId: id,
         };
         await salesProducts.create(salesProduct);
