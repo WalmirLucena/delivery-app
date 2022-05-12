@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/OrderCard.css';
+import moment from 'moment'
+
 
 function OrderCard({
    order: {
@@ -11,7 +13,9 @@ function OrderCard({
     deliveryAddress,
     deliveryNumber,
   }, path }) {
+
   return (
+    
     <section className="orders">
       <div className="order-card">
         <div
@@ -27,7 +31,7 @@ function OrderCard({
         </div>
         <div className="order-details">
           <h3 data-testid={ `${path}_orders__element-order-date-` }>
-            { saleDate }
+            {   moment(saleDate).format('DD/MM/YYYY')   }
           </h3>
           <h3 data-testid={ `${path}_orders__element-card-price-` }>
             R$
