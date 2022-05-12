@@ -1,4 +1,4 @@
-const { deleteUser, getAllUsers } = require('../controller/userController');
+const { deleteUser, getAllUsers, getByRole } = require('../controller/userController');
 const { idValidation, validateToken } = require('../middlewares/userValidation');
 
 const userRouter = [
@@ -13,6 +13,12 @@ const userRouter = [
     path: '/user/:id',
     middleware: [validateToken, idValidation],
     controller: deleteUser,
+  },
+  {
+    method: 'get',
+    path: '/role',
+    middleware: [],
+    controller: getByRole,
   },
 ];
 

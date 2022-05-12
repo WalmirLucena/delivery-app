@@ -7,7 +7,7 @@ function SellerOrder() {
   const [orders, setOrders] = React.useState([]);
 
   const fetchData = async () => {
-    const endpoint = '/products';
+    const endpoint = '/sales';
     const response = await request(endpoint, {}, 'get');
     setOrders(response);
   };
