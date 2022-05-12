@@ -18,6 +18,11 @@ const getById = async (id) => {
   return userRegistered; 
 };
 
+const getByRole = async (role) => {
+  const user = await users.findAll({ where: { role } });
+  return user;
+};
+
 const login = async (data) => {
   const userRegistered = await getOneUser(data.email);
 
