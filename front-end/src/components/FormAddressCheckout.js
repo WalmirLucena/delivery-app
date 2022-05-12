@@ -1,7 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/FormAddressCheckout.css';
 
 function FormAdressCheckout() {
+  // const [sellers, setSellers] = useState('Fullana');
+
+  const sellers = [
+    {
+      name: 'Fullana',
+    },
+    {
+      name: 'Zebirita',
+    },
+    {
+      name: 'Zebi',
+    }
+  ]
+  // const fetchSellers = async () => {
+  //   const endpoint = '/role';
+  //   const ans = await request(endpoint, { seller }, 'get');
+  //   console.log(ans);
+  //   setSellers(ans);
+  // };
+
+  // useEffect(() => {
+  //   fetchSellers();
+  // }, []);
+
   return (
     <div className="from-adress-checkout">
       <div className="from-adress-checkout-title">
@@ -12,9 +36,11 @@ function FormAdressCheckout() {
           data-testid="customer_checkout__select-seller"
         >
           P. Vendedora Responsável
-          <option value="1">Vendedora 1</option>
-          <option value="2">Vendedora 2</option>
-          <option value="3">Vendedora 3</option>
+          { sellers.map((seller) => (
+            <option key={ seller.id } value={ seller.id }>
+              { seller.name }
+            </option>
+          )) }
         </select>
         <div className="from-adress-checkout-content-input">
           <label htmlFor="address">
