@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { request } from '../services/requests';
+import { request, setToken } from '../services/requests';
 import '../styles/FormAddressCheckout.css';
 
 function FormAdressCheckout() {
@@ -9,6 +9,7 @@ function FormAdressCheckout() {
   const [deliveryAddress, setAddress] = useState('');
   const [deliveryNumber, setNumAddress] = useState('');
   const [cartData, setCartData] = useState(null);
+  const [getToken, setGetToken] = useState(null);
 
   const history = useHistory();
 
@@ -35,19 +36,19 @@ function FormAdressCheckout() {
     const itens = localStorage.getItem('carrinho');
     const user = localStorage.getItem('user');
     const infoCart = JSON.parse(itens);
-    console.log('infoCart', infoCart);
     const userData = JSON.parse(user);
+    setGetToken(userData.token);
     const totalPrice = calcTotal(infoCart);
-    console.log('totalPrice', totalPrice);
     setCartData({ cartList: [...infoCart], userId: userData.id, totalPrice });
   };
 
   useEffect(() => {
     getLocalStorage();
-  }, []);
+  }, [getLocalStorage]);
 
   const postOrder = async () => {
     const endpoint = '/sales';
+    setToken(getToken);
     await request(endpoint,
       { deliveryAddress,
         deliveryNumber,
