@@ -14,4 +14,9 @@ const getById = async (req, res) => {
     return res.status(200).json(sale);
 };
 
-module.exports = { create, getById };
+const getSalesProduct = async (req, res) => {
+    const result = await SaleService.getSalesProduct(req.body);
+    return res.status(200).json(result);
+};
+
+module.exports = { create, getById, getSalesProduct };
