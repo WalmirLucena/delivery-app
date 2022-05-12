@@ -17,4 +17,9 @@ const getAllUsers = async (req, res) => {
     return res.status(200).json(users);
 };
 
-module.exports = { login, createUser, deleteUser, getAllUsers };
+const getByRole = async (req, res) => {
+    const users = await UserService.getByRole(req.body);
+    return res.status(200).json(users);
+};
+
+module.exports = { login, createUser, deleteUser, getAllUsers, getByRole };

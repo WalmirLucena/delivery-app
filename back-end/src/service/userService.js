@@ -79,4 +79,5 @@ module.exports = {
   getOneUser, 
   getAllUsers, 
   deleteUser, 
-  getById };
+  getById,
+  getByRole };
