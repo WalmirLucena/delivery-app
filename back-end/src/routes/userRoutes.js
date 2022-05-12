@@ -16,7 +16,7 @@ const userRouter = [
   },
   {
     method: 'get',
-    path: '/seller',
+    path: '/role',
     middleware: [],
     controller: getByRole,
   },
