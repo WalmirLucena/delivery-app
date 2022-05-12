@@ -1,6 +1,21 @@
 const { sales, salesProducts } = require('../database/models');
 
-const create = async (data) => {
+const createSalesProduct = async (data, id) => {
+    const newSalesProduct = data.map(async (value) => {
+        const salesProduct = { 
+            quantity: value.quantity,
+            productId: value.productId,
+            saleId: id,
+        };
+        await salesProducts.create(salesProduct);
+        return salesProduct;
+    });
+    const response = await Promise.all(newSalesProduct);
+
+    return response;
+};
+
+const createSale = async (data) => {
     const { userId,
         sellerId, 
         totalPrice,
@@ -17,7 +32,9 @@ const create = async (data) => {
         deliveryNumber, 
         status });
 
-    const salesProduct = await salesProducts.create(cartList);
+    const { id } = newSale;
+
+    const salesProduct = await createSalesProduct(cartList, id);
 
     return { newSale, salesProduct };
 };
@@ -31,4 +48,4 @@ const getById = async (data) => {
 
 // getByUserId
 
-module.exports = { create, getById };
+module.exports = { createSale, getById };

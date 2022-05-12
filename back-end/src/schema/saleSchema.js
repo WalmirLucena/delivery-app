@@ -7,6 +7,7 @@ const saleSchema = Joi.object().keys({
     deliveryAddress: Joi.string().required(),
     deliveryNumber: Joi.string().required(),
     status: Joi.string().valid('pending', 'delivered', 'preparing').required(),
+    cartList: Joi.array().required(),
 });
 
 module.exports = { saleSchema };

@@ -1,7 +1,8 @@
 const SaleService = require('../service/saleService');
 
 const create = async (req, res) => {
-    const newSale = await SaleService.create(req.body);
+    console.log(req.body);
+    const newSale = await SaleService.createSale(req.body);
     return res.status(200).json(newSale);
 };
 
