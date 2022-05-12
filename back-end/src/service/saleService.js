@@ -39,9 +39,7 @@ const createSale = async (data) => {
     return { newSale, salesProduct };
 };
 
-const getSales = async () => {
-    return sales.findAll();
-};
+const getSales = async () => sales.findAll();
 
 const getById = async (data) => {
     const { id } = data;
@@ -52,4 +50,4 @@ const getById = async (data) => {
 
 // getByUserId
 
-module.exports = { createSale, getById, getSales};
+module.exports = { createSale, getById, getSales };
