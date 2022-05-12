@@ -35,7 +35,7 @@ function CartList() {
   useEffect(() => {
     calcSubTotal();
     calcTotal();
-  }, [calcSubTotal, calcTotal, itensCart]);
+  }, [itensCart]);
 
   const removeItem = (item) => {
     const newItens = itensCart.filter((i) => i.id !== item.id);

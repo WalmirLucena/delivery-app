@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { request } from '../services/requests';
 import '../styles/FormAddressCheckout.css';
 
 function FormAdressCheckout() {
-  // const [sellers, setSellers] = useState('Fullana');
+  const [sellers, setSellers] = useState(null);
   const [address, setAddress] = useState('');
   const [numAddress, setNumAddress] = useState('');
 
-  const sellers = [
-    {
-      name: 'Fullana',
-    },
-    {
-      name: 'Zebirita',
-    },
-    {
-      name: 'Zebi',
-    },
-  ];
-  // const fetchSellers = async () => {
-  //   const endpoint = '/role';
-  //   const ans = await request(endpoint, { seller }, 'get');
-  //   console.log(ans);
-  //   setSellers(ans);
-  // };
+  const fetchSellers = async () => {
+    const endpoint = '/role';
+    const ans = await request(endpoint, { seller }, 'get');
+    console.log('seller', ans);
+    setSellers(ans);
+  };
 
-  // useEffect(() => {
-  //   fetchSellers();
-  // }, []);
+  useEffect(() => {
+    fetchSellers();
+  }, []);
 
   return (
     <div className="from-adress-checkout">
@@ -39,7 +29,7 @@ function FormAdressCheckout() {
           onChange={ ({ target }) => setSeller(target.value) }
         >
           P. Vendedora Responsável
-          { sellers.map((seller) => (
+          { sellers && sellers.map((seller) => (
             <option key={ seller.id } value={ seller.id }>
               { seller.name }
             </option>
