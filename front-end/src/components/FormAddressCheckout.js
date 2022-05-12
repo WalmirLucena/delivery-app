@@ -3,6 +3,8 @@ import '../styles/FormAddressCheckout.css';
 
 function FormAdressCheckout() {
   // const [sellers, setSellers] = useState('Fullana');
+  const [address, setAddress] = useState('');
+  const [numAddress, setNumAddress] = useState('');
 
   const sellers = [
     {
@@ -13,8 +15,8 @@ function FormAdressCheckout() {
     },
     {
       name: 'Zebi',
-    }
-  ]
+    },
+  ];
   // const fetchSellers = async () => {
   //   const endpoint = '/role';
   //   const ans = await request(endpoint, { seller }, 'get');
@@ -34,6 +36,7 @@ function FormAdressCheckout() {
       <form className="from-adress-checkout-content">
         <select
           data-testid="customer_checkout__select-seller"
+          onChange={ ({ target }) => setSeller(target.value) }
         >
           P. Vendedora Responsável
           { sellers.map((seller) => (
@@ -47,8 +50,9 @@ function FormAdressCheckout() {
             Endereço
             <input
               data-testid="customer_checkout__input-address"
-              type="text"
               id="address"
+              onChange={ ({ target }) => setAddress(target.value) }
+              type="text"
             />
           </label>
         </div>
@@ -58,6 +62,7 @@ function FormAdressCheckout() {
             <input
               id="number"
               data-testid="customer_checkout__input-addressNumber"
+              onChange={ ({ target }) => setNumAddress(target.value) }
               type="text"
             />
           </label>
