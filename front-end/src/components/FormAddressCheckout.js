@@ -9,7 +9,7 @@ function FormAdressCheckout() {
 
   const fetchSellers = async () => {
     const endpoint = '/role';
-    const ans = await request(endpoint, { seller }, 'get');
+    const ans = await request(endpoint, {}, 'get');
     console.log('seller', ans);
     setSellers(ans);
   };
