@@ -18,7 +18,7 @@ function OrderCard({
           className="order-id"
           data-testid={ `${path}_orders__element-order-id-` }
         >
-          <h3>{ `Pedido:${id}` }</h3>
+          <h3>{ `Pedido ${id}` }</h3>
         </div>
         <div className="order-status">
           <h3 data-testid={ `${path}_orders__element-delivery-status-` }>
