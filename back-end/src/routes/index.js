@@ -1,6 +1,7 @@
 const { loginRouter } = require('./loginRoutes');
 const { productRouter } = require('./productRoutes');
 const { registerRouter } = require('./registerRoutes');
+const { saleProductRouter } = require('./saleProductRouter');
 const { salesRouter } = require('./saleRouter');
 const { userRouter } = require('./userRoutes');
 
@@ -10,6 +11,6 @@ const routes = [
     ...productRouter,
     ...salesRouter,
     ...userRouter,
-];
+    ...saleProductRouter];
 
 module.exports = { routes };
