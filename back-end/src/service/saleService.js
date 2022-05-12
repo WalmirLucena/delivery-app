@@ -1,4 +1,4 @@
-const { sales } = require('../database/models');
+const { sales, salesProducts } = require('../database/models');
 
 const create = async (data) => {
     const { userId,
@@ -6,7 +6,8 @@ const create = async (data) => {
         totalPrice,
         deliveryAddress, 
         deliveryNumber, 
-        status } = data;
+        status,
+        cartList } = data;
 
     const newSale = await sales.create({ 
         userId, 
@@ -16,7 +17,9 @@ const create = async (data) => {
         deliveryNumber, 
         status });
 
-    return newSale;
+    const salesProduct = await salesProducts.create(cartList);
+
+    return { newSale, salesProduct };
 };
 
 const getById = async (data) => {
