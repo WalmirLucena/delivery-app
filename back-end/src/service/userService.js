@@ -18,7 +18,7 @@ const getById = async (id) => {
   return userRegistered; 
 };
 
-const getByRole = async (role) => {
+const getByRole = async ({ role }) => {
   const user = await users.findAll({ where: { role } });
   return user;
 };
