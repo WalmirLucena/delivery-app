@@ -61,4 +61,16 @@ const getSalesProduct = async ({ saleId }) => {
     return response;
 };
 
-module.exports = { createSale, getById, getSalesProduct, getSales };
+const getSalesBySellerId = async (sellerId) => {
+    const response = await sales.findAll({
+        where: { sellerId },
+    });
+    return response;
+};
+
+module.exports = { 
+    createSale, 
+    getById, 
+    getSalesProduct, 
+    getSales,
+    getSalesBySellerId };

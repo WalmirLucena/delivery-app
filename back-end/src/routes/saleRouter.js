@@ -1,6 +1,7 @@
 const { create, getSales, getSalesProduct } = require('../controller/saleController');
 const { saleBodyValidation } = require('../middlewares/saleValidation');
 const { validateToken } = require('../middlewares/userValidation');
+const { getSalesBySellerId } = require('../service/saleService');
 
 const salesRouter = [
   {
@@ -20,6 +21,12 @@ const salesRouter = [
     path: '/orders',
     middleware: [],
     controller: getSalesProduct,
+  },
+  {
+    method: 'get',
+    path: '/sales/seller-id/:id',
+    middleware: [],
+    controller: getSalesBySellerId,
   },
 ];
 
