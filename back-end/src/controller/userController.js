@@ -17,8 +17,8 @@ const getAllUsers = async (req, res) => {
     return res.status(200).json(users);
 };
 
-const getByRole = async (req, res) => {
-    const users = await UserService.getByRole(req.body);
+const getByRole = async (_req, res) => {
+    const users = await UserService.getByRole();
     return res.status(200).json(users);
 };
 

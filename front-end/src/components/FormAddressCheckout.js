@@ -1,7 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { request, setToken } from '../services/requests';
 import '../styles/FormAddressCheckout.css';
 
 function FormAdressCheckout() {
+  const [arrSellers, setArrSellers] = useState(null);
+  const [seller, setSeller] = useState(null);
+  const [deliveryAddress, setAddress] = useState('');
+  const [deliveryNumber, setNumAddress] = useState('');
+  const [cartData, setCartData] = useState(null);
+  const [getToken, setGetToken] = useState(null);
+
+  const history = useHistory();
+
+  const fetchSellers = async () => {
+    const endpoint = '/role';
+    const ans = await request(endpoint, {}, 'get');
+    setArrSellers(ans);
+  };
+
+  useEffect(() => {
+    fetchSellers();
+  }, []);
+
+  const calcTotal = (arrCart) => {
+    let ctotal = 0;
+    arrCart.map((item) => {
+      ctotal += item.price * item.quantity;
+      return ctotal;
+    });
+    return ctotal;
+  };
+
+  const getLocalStorage = () => {
+    const itens = localStorage.getItem('carrinho');
+    const user = localStorage.getItem('user');
+    const infoCart = JSON.parse(itens);
+    const userData = JSON.parse(user);
+    setGetToken(userData.token);
+    const totalPrice = calcTotal(infoCart);
+    setCartData({ cartList: [...infoCart], userId: userData.id, totalPrice });
+  };
+
+  useEffect(() => {
+    getLocalStorage();
+  }, [getLocalStorage]);
+
+  const postOrder = async () => {
+    const endpoint = '/sales';
+    setToken(getToken);
+    await request(endpoint,
+      { deliveryAddress,
+        deliveryNumber,
+        sellerId: seller,
+        status: 'pending',
+        ...cartData }, 'post');
+    history.push('/customer/orders');
+  };
+
   return (
     <div className="from-adress-checkout">
       <div className="from-adress-checkout-title">
@@ -10,19 +66,24 @@ function FormAdressCheckout() {
       <form className="from-adress-checkout-content">
         <select
           data-testid="customer_checkout__select-seller"
+          onChange={ ({ target }) => setSeller(target.value) }
         >
           P. Vendedora Responsável
-          <option value="1">Vendedora 1</option>
-          <option value="2">Vendedora 2</option>
-          <option value="3">Vendedora 3</option>
+          <option value="">Selecione um vendedor</option>
+          { arrSellers && arrSellers.map((element) => (
+            <option key={ element.id } value={ element.id }>
+              { element.name }
+            </option>
+          )) }
         </select>
         <div className="from-adress-checkout-content-input">
           <label htmlFor="address">
             Endereço
             <input
               data-testid="customer_checkout__input-address"
-              type="text"
               id="address"
+              onChange={ ({ target }) => setAddress(target.value) }
+              type="text"
             />
           </label>
         </div>
@@ -32,6 +93,7 @@ function FormAdressCheckout() {
             <input
               id="number"
               data-testid="customer_checkout__input-addressNumber"
+              onChange={ ({ target }) => setNumAddress(target.value) }
               type="text"
             />
           </label>
@@ -42,6 +104,7 @@ function FormAdressCheckout() {
           className="from-adress-checkout-btn"
           data-testid="customer_checkout__button-submit-order"
           type="button"
+          onClick={ postOrder }
         >
           FINALIZAR PEDIDO
         </button>
@@ -49,4 +112,5 @@ function FormAdressCheckout() {
     </div>
   );
 }
+
 export default FormAdressCheckout;

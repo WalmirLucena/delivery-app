@@ -2,7 +2,7 @@ const SaleService = require('../service/saleService');
 
 const create = async (req, res) => {
     const newSale = await SaleService.createSale(req.body);
-    return res.status(200).json(newSale);
+    return res.status(201).json(newSale);
 };
 
 const getSales = async (req, res) => {
@@ -18,4 +18,9 @@ const getById = async (req, res) => {
     return res.status(200).json(sale);
 };
 
-module.exports = { create, getById, getSales };
+const getSalesProduct = async (req, res) => {
+    const result = await SaleService.getSalesProduct(req.body);
+    return res.status(201).json(result);
+};
+
+module.exports = { create, getById, getSalesProduct, getSales };
