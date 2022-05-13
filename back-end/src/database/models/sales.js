@@ -20,13 +20,10 @@ const Sale = (sequelize, DataTypes) => {
     timestamps: false   
   });
   
+  // Uma venda pode ter apenas um usuário e um vendedor
   sale.associate = (models) => {
-    sale.hasMany(models.users, { foreignKey: "id", as: "users" });
-
-    sale.hasMany(models.salesProducts, {
-      foreignKey: "saleId",
-      as: "sales",
-    });
+    sale.belongsTo(models.users, { foreignKey: "userId", as: "user" });
+    sale.belongsTo(models.users, {  foreignKey: "sellerId", as: "seller"})
   };
   
 
