@@ -23,7 +23,7 @@ function FormAdressCheckout() {
 
   useEffect(() => {
     fetchSellers();
-  });
+  }, []);
 
   const calcTotal = (arrCart) => {
     let ctotal = 0;
@@ -47,7 +47,7 @@ function FormAdressCheckout() {
   useEffect(() => {
     getLocalStorage();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  });
+  }, []);
 
   const postOrder = async () => {
     const endpoint = '/sales';

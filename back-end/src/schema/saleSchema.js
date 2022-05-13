@@ -6,7 +6,7 @@ const saleSchema = Joi.object().keys({
     totalPrice: Joi.number().required(),
     deliveryAddress: Joi.string().required(),
     deliveryNumber: Joi.string().required(),
-    status: Joi.string().valid('pending', 'delivered', 'preparing').required(),
+    status: Joi.string().valid('Pendente', 'Entregue', 'Preparando').required(),
     cartList: Joi.array().required(),
 });
 

@@ -22,7 +22,6 @@ function SellerOrder() {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
-
   return (
     <>
       <NavBarSeller />

@@ -35,7 +35,8 @@ function CartList() {
   useEffect(() => {
     calcSubTotal();
     calcTotal();
-  }, [calcSubTotal, calcTotal, itensCart]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itensCart]);
 
   const removeItem = (item) => {
     const newItens = itensCart.filter((i) => i.id !== item.id);
