@@ -1,7 +1,10 @@
-const { create, getSales, getSalesProduct } = require('../controller/saleController');
+const { 
+  create, 
+  getSales, 
+  getSalesProduct, 
+  getSalesBySellerId } = require('../controller/saleController');
 const { saleBodyValidation } = require('../middlewares/saleValidation');
 const { validateToken } = require('../middlewares/userValidation');
-const { getSalesBySellerId } = require('../service/saleService');
 
 const salesRouter = [
   {
