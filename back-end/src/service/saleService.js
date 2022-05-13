@@ -1,4 +1,4 @@
-const { sales, salesProducts, products } = require('../database/models');
+const { sales, users, salesProducts, products } = require('../database/models');
 
 const createSalesProduct = async (data, id) => {
     const newSalesProduct = data.map(async (value) => {
@@ -55,6 +55,10 @@ const getSalesProduct = async ({ saleId }) => {
             model: products,
             as: 'products',
             through: { attributes: ['quantity'] }, 
+        }, {
+            model: users,
+            as: 'seller',
+            attributes: { exclude: ['password'] },
         }],
     });
 
