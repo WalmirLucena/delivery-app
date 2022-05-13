@@ -23,6 +23,7 @@ function CustomerOrder() {
         key={ order.id }
         order={ order }
         path="customers"
+        required="/customer/order/"
       />))}
     </>
   );
