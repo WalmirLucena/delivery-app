@@ -6,8 +6,15 @@ import { request } from '../../services/requests';
 function CustomerOrder() {
   const [orders, setOrders] = React.useState([]);
 
+  const getUser = () => {
+    const user = localStorage.getItem('user');
+    const ans = JSON.parse(user);
+    return ans;
+  };
+
   const fetchData = async () => {
-    const endpoint = '/sales';
+    const { id } = getUser();
+    const endpoint = `/sales/user-id/${id}`;
     const response = await request(endpoint, {}, 'get');
     setOrders(response);
   };
