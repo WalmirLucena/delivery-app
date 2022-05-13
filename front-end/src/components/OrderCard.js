@@ -18,26 +18,26 @@ function OrderCard({
       <div className="order-card">
         <div
           className="order-id"
-          data-testid={ `${path}_orders__element-order-id-` }
+          data-testid={ `${path}_orders__element-order-id-${id}` }
         >
           <h3>{ `Pedido ${id}` }</h3>
         </div>
         <div className="order-status">
-          <h3 data-testid={ `${path}_orders__element-delivery-status-` }>
+          <h3 data-testid={ `${path}_orders__element-delivery-status-${id}` }>
             {status}
           </h3>
         </div>
         <div className="order-details">
-          <h3 data-testid={ `${path}_orders__element-order-date-` }>
+          <h3 data-testid={ `${path}_orders__element-order-date-${id}` }>
             { moment(saleDate).format('DD/MM/YYYY') }
           </h3>
-          <h3 data-testid={ `${path}_orders__element-card-price-` }>
+          <h3 data-testid={ `${path}_orders__element-card-price-${id}` }>
             R$
             { totalPrice.replace('.', ',') }
           </h3>
         </div>
         <div className="order-address">
-          <h3 data-testid={ `${path}_orders__element-card-address-` }>
+          <h3 data-testid={ `${path}_orders__element-card-address-${id}` }>
             { `${deliveryAddress}, ${deliveryNumber} ` }
 
           </h3>
