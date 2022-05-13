@@ -30,7 +30,7 @@ function SellerOrder() {
         key={ order.id }
         order={ order }
         path="seller"
-        redirect="/seller/orders/"
+        required="/seller/orders/"
       />))}
     </>
   );

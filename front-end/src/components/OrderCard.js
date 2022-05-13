@@ -12,11 +12,11 @@ function OrderCard({
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-  }, path, redirect }) {
+  }, path, required }) {
   return (
 
     <section className="orders">
-      <Link to={ '/seller/orders/'+ id }>
+      <Link to={ `${required}${id}` }>
         <div className="order-card">
           <div
             className="order-id"
@@ -52,7 +52,7 @@ function OrderCard({
 
 OrderCard.propTypes = {
   path: PropTypes.string.isRequired,
-  redirect: PropTypes.string.isRequired,
+  required: PropTypes.string.isRequired,
   order: PropTypes.shape({
     id: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,

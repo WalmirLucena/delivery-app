@@ -24,7 +24,7 @@ function RoutesApp() {
         <Route path="/register" component={ Register } />
         <Route path="/customer/products" component={ CustomerProduct } />
         <Route path="/customer/checkout" component={ CustomerCheckout } />
-        <Route path="/custumer/order/:id" component={ CustomerOrderDetails } />
+        <Route path="/customer/order/:id" component={ CustomerOrderDetails } />
         <Route path="/customer/orders" component={ CustomerOrder } />
         <Route path="/seller/orders/:id" component={ SellerOrderDetails } />
         <Route path="/seller/orders" component={ SellerOrder } />
