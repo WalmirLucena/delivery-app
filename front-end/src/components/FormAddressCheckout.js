@@ -19,10 +19,6 @@ function FormAdressCheckout() {
     setArrSellers(ans);
   };
 
-  useEffect(() => {
-    fetchSellers();
-  }, []);
-
   const calcTotal = (arrCart) => {
     let ctotal = 0;
     arrCart.map((item) => {
@@ -44,7 +40,8 @@ function FormAdressCheckout() {
 
   useEffect(() => {
     getLocalStorage();
-  }, [getLocalStorage]);
+    fetchSellers();
+  }, []);
 
   const postOrder = async () => {
     const endpoint = '/sales';
