@@ -12,7 +12,8 @@ const SalesProducts = (sequelize, DataTypes) => {
     },
       quantity: DataTypes.INTEGER,
   }, {
-    tablename: 'salesProducts',
+    tablename: 'sales_products',
+    underscored: true,
     timestamps: false,
   });
 

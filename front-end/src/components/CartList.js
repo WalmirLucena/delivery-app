@@ -39,7 +39,6 @@ function CartList() {
 
   const removeItem = (item) => {
     const newItens = itensCart.filter((i) => i.id !== item.id);
-    console.log(newItens);
     setItensCart(newItens);
   };
 
