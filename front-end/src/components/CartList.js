@@ -35,7 +35,7 @@ function CartList() {
   useEffect(() => {
     calcSubTotal();
     calcTotal();
-  }, [itensCart]);
+  }, [calcSubTotal, calcTotal, itensCart]);
 
   const removeItem = (item) => {
     const newItens = itensCart.filter((i) => i.id !== item.id);
@@ -110,10 +110,14 @@ function CartList() {
       </div>
       <div
         className="total-price"
-        data-testid="customer_checkout__element-order-total-price"
       >
         <h2>Total: R$</h2>
-        <h2>{ total && total.replace(/\./, ',') }</h2>
+        <h2
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          { total && total.replace(/\./, ',') }
+
+        </h2>
       </div>
     </div>
   );

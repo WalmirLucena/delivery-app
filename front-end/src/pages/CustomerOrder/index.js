@@ -21,7 +21,7 @@ function CustomerOrder() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   return (
     <>
