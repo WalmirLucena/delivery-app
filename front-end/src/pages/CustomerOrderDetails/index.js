@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState, useContext } from 'react';
-import NavBarSeller from '../../components/NavBarSeller';
+import NavBarCustomer from '../../components/NavBarCustomer';
 import OrderDetails from '../../components/OrderDetails';
 import { request } from '../../services/requests';
 import DeliveryContext from '../../context/DeliveryContext';
 
-function CustomerOrderDetails() {
+function CustomerOrderDetails({ match }) {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -19,17 +20,17 @@ function CustomerOrderDetails() {
   useEffect(() => {
     async function fetchData() {
       const endpoint = '/orders';
-      const response = await request(endpoint, { saleId: sale.saleId }, 'post');
+      const response = await request(endpoint, { saleId: +match.params.id }, 'post');
       setOrders(response);
       setLoading(false);
     }
     fetchData();
     getCart();
-  }, [sale.saleId]);
+  }, [match.params.id, sale.saleId]);
 
   return (
     <>
-      <NavBarSeller />
+      <NavBarCustomer />
       { !loading ? (
         <OrderDetails
           orders={ orders[0] }
@@ -44,5 +45,13 @@ function CustomerOrderDetails() {
     </>
   );
 }
+
+CustomerOrderDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};
 
 export default CustomerOrderDetails;

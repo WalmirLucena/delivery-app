@@ -63,14 +63,14 @@ const getSalesProduct = async ({ saleId }) => {
 
 const getSalesBySellerId = async (sellerId) => {
     const response = await sales.findAll({
-        where: { sellerId },
+        where: { sellerId: +sellerId },
     });
     return response;
 };
 
 const getSalesByUserId = async (userId) => {
     const response = await sales.findAll({
-        where: { userId },
+        where: { userId: +userId },
     });
     return response;
 };
