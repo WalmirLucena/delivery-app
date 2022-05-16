@@ -15,6 +15,8 @@ function OrderDetails(
 ) {
   const [subTotal, setSubtotal] = useState(0);
 
+  const cli = 'customer';
+
   const calcSubTotal = () => {
     const sum = products.reduce((acc, value) => {
       acc[value.name] = ((value.salesProducts.quantity * value.price).toFixed(2)
@@ -35,42 +37,47 @@ function OrderDetails(
         <h2> Detalhe do Pedido </h2>
       </div>
       <section className="order-header">
-        <div
-          data-testid="customer_order_details__element-order
-        -details-label-order-id"
-        >
-          <h2>
+        <div>
+          <h2
+            data-testid={
+              `${cli}_order_details__element-order-details-label-order-id`
+            }
+          >
             { `PEDIDO ${id}`}
           </h2>
         </div>
-        <div
-          data-testid="customer_order_details__element-order
-          -details-label-seller-name"
-        >
-          <h2>
+        <div>
+          <h2
+            data-testid={
+              `${cli}_order_details__element-order-details-label-seller-name`
+            }
+          >
             {`P.Vend: ${seller || 'Não informado'}`}
           </h2>
         </div>
         <div>
           <h2
-            data-testid="customer_order_details__element-order
-        -details-label-order-date"
+            data-testid={
+              `${cli}_order_details__element-order-details-label-order-date`
+            }
           >
             {moment(saleDate).format('DD/MM/YYYY')}
           </h2>
         </div>
-        <div
-          data-testid="customer_order_details__element-
-          order-details-label-delivery-status"
-        >
-          <h2>
+        <div>
+          <h2
+            data-testid={
+              `${cli}_order_details__element-order-details-label-delivery-status`
+            }
+          >
             {status}
           </h2>
         </div>
         <div>
           <button
+            data-testid={ `${cli}_order_details__button-delivery-check` }
             type="button"
-            data-testid="customer_order_details__button-delivery-check"
+            disabled={ status !== 'Em Trânsito' }
           >
             MARCAR COMO ENTREGUE
           </button>
@@ -82,7 +89,7 @@ function OrderDetails(
             <div className="cart-list-content-item-number">
               <span
                 data-testid={
-                  `customer_order_details__element-order-table-item-number-${index}`
+                  `${cli}_order_details__element-order-table-item-number-${index}`
                 }
               >
                 { index + 1}
@@ -90,7 +97,7 @@ function OrderDetails(
             </div>
             <div
               className="cart-list-content-item-name"
-              data-testid={ `customer_order_details__element-order-table-name-${index}` }
+              data-testid={ `${cli}_order_details__element-order-table-name-${index}` }
             >
               <span>{ item.name }</span>
             </div>
@@ -99,7 +106,7 @@ function OrderDetails(
             >
               <span
                 data-testid={
-                  `customer_order_details__element-order-table-quantity-${index}`
+                  `${cli}_order_details__element-order-table-quantity-${index}`
                 }
               >
                 { item.quantity }
@@ -111,7 +118,7 @@ function OrderDetails(
             >
               <span
                 data-testid={
-                  `customer_order_details__element-order-table-unit-price-${index}`
+                  `${cli}_order_details__element-order-table-unit-price-${index}`
                 }
               >
                 { item.price.replace(/\./, ',') }
@@ -121,7 +128,7 @@ function OrderDetails(
             <div
               className="cart-list-content-item-subtotal"
               data-testid={
-                `customer_order_details__element-order-table-sub-total-${index}`
+                `${cli}_order_details__element-order-table-sub-total-${index}`
               }
             >
               <span>{ subTotal && subTotal[item.name] }</span>
@@ -134,7 +141,9 @@ function OrderDetails(
       >
         <h2>Total: R$</h2>
         <h2
-          data-testid="customer_order_details__element-order-total-price"
+          data-testid={
+            `${cli}_order_details__element-order-total-price`
+          }
         >
           { totalPrice.replace(/\./, ',') }
         </h2>

@@ -1,9 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../styles/NavBarAdmin.css';
 import Header from './Header';
 
 function NavBarAdmin() {
+  const history = useHistory();
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
+    history.push('/');
+  };
   return (
     <>
       <Header />
@@ -17,11 +24,12 @@ function NavBarAdmin() {
           >
             GERENCIAR USUÁRIOS
           </Link>
-          <Link
-            to="/login"
+          <button
+            onClick={ () => handleLogout() }
+            type="button"
           >
             SAIR
-          </Link>
+          </button>
         </div>
       </nav>
     </>
