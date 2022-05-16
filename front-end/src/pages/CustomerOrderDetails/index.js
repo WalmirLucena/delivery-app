@@ -28,6 +28,7 @@ function CustomerOrderDetails({ match }) {
           orders={ orders[0] }
           seller={ sale.sellerName }
           products={ orders[0].products }
+          match={ match }
         />
 
       ) : (

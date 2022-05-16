@@ -10,6 +10,7 @@ function OrderDetails(
     saleDate,
     status,
   },
+  // match,
   products,
   seller = 'não informado' },
 ) {

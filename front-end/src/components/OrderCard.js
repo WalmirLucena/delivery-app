@@ -12,36 +12,34 @@ function OrderCard({
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-  }, path, required }) {
+  }, required }) {
   return (
-
     <section className="orders">
       <Link to={ `${required}${id}` }>
         <div className="order-card">
           <div
             className="order-id"
-            data-testid={ `${path}_orders__element-order-id-${id}` }
+            data-testid={ `customer_orders__element-order-id-${id}` }
           >
             <h3>{ `Pedido ${id}` }</h3>
           </div>
           <div className="order-status">
-            <h3 data-testid={ `${path}_orders__element-delivery-status-${id}` }>
+            <h3 data-testid={ `customer_orders__element-delivery-status-${id}` }>
               {status}
             </h3>
           </div>
           <div className="order-details">
-            <h3 data-testid={ `${path}_orders__element-order-date-${id}` }>
+            <h3 data-testid={ `customer_orders__element-order-date-${id}` }>
               { moment(saleDate).format('DD/MM/YYYY') }
             </h3>
-            <h3 data-testid={ `${path}_orders__element-card-price-${id}` }>
+            <h3 data-testid={ `customer_orders__element-card-price-${id}` }>
               R$
               { totalPrice.replace('.', ',') }
             </h3>
           </div>
           <div className="order-address">
-            <h3 data-testid={ `${path}_orders__element-card-address-${id}` }>
+            <h3 data-testid={ `customer_orders__element-card-address-${id}` }>
               { `${deliveryAddress}, ${deliveryNumber} ` }
-
             </h3>
           </div>
         </div>
@@ -51,7 +49,6 @@ function OrderCard({
 }
 
 OrderCard.propTypes = {
-  path: PropTypes.string.isRequired,
   required: PropTypes.string.isRequired,
   order: PropTypes.shape({
     id: PropTypes.number.isRequired,
