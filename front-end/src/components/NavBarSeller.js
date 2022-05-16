@@ -1,9 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../styles/NavBarSeller.css';
 import Header from './Header';
 
 function NavBarSeller() {
+  const history = useHistory();
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
+    history.push('/');
+  };
   return (
     <>
       <Header />
@@ -15,11 +22,12 @@ function NavBarSeller() {
           >
             PEDIDOS
           </Link>
-          <Link
-            to="/login"
+          <button
+            onClick={ () => handleLogout() }
+            type="button"
           >
             SAIR
-          </Link>
+          </button>
         </div>
       </nav>
     </>

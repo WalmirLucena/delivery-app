@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import NavBarSeller from '../../components/NavBarSeller';
+import NavBarCustomer from '../../components/NavBarCustomer';
 import OrderCard from '../../components/OrderCard';
 import { request } from '../../services/requests';
 
@@ -21,16 +21,17 @@ function CustomerOrder() {
 
   useEffect(() => {
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      <NavBarSeller />
+      <NavBarCustomer />
       { orders.map((order) => (<OrderCard
         key={ order.id }
         order={ order }
         path="customers"
-        required="/customer/order/"
+        required="/customer/orders/"
       />))}
     </>
   );

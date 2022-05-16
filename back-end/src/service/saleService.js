@@ -1,4 +1,4 @@
-const { sales, salesProducts, products } = require('../database/models');
+const { sales, users, salesProducts, products } = require('../database/models');
 
 const createSalesProduct = async (data, id) => {
     const newSalesProduct = data.map(async (value) => {
@@ -55,6 +55,10 @@ const getSalesProduct = async ({ saleId }) => {
             model: products,
             as: 'products',
             through: { attributes: ['quantity'] }, 
+        }, {
+            model: users,
+            as: 'seller',
+            attributes: { exclude: ['password'] },
         }],
     });
 
@@ -63,14 +67,14 @@ const getSalesProduct = async ({ saleId }) => {
 
 const getSalesBySellerId = async (sellerId) => {
     const response = await sales.findAll({
-        where: { sellerId },
+        where: { sellerId: +sellerId },
     });
     return response;
 };
 
 const getSalesByUserId = async (userId) => {
     const response = await sales.findAll({
-        where: { userId },
+        where: { userId: +userId },
     });
     return response;
 };

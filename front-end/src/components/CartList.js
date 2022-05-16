@@ -35,6 +35,7 @@ function CartList() {
   useEffect(() => {
     calcSubTotal();
     calcTotal();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itensCart]);
 
   const removeItem = (item) => {
@@ -110,10 +111,14 @@ function CartList() {
       </div>
       <div
         className="total-price"
-        data-testid="customer_checkout__element-order-total-price"
       >
         <h2>Total: R$</h2>
-        <h2>{ total && total.replace(/\./, ',') }</h2>
+        <h2
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          { total && total.replace(/\./, ',') }
+
+        </h2>
       </div>
     </div>
   );

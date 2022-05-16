@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import DeliveryContext from '../context/DeliveryContext';
 import { request, setToken } from '../services/requests';
 import '../styles/FormAddressCheckout.css';
 
@@ -10,6 +11,7 @@ function FormAdressCheckout() {
   const [deliveryNumber, setNumAddress] = useState('');
   const [cartData, setCartData] = useState(null);
   const [getToken, setGetToken] = useState(null);
+  const { setSale } = useContext(DeliveryContext);
 
   const history = useHistory();
 
@@ -18,6 +20,10 @@ function FormAdressCheckout() {
     const ans = await request(endpoint, {}, 'get');
     setArrSellers(ans);
   };
+
+  useEffect(() => {
+    fetchSellers();
+  }, []);
 
   const calcTotal = (arrCart) => {
     let ctotal = 0;
@@ -34,25 +40,26 @@ function FormAdressCheckout() {
     const infoCart = JSON.parse(itens);
     const userData = JSON.parse(user);
     setGetToken(userData.token);
-    const totalPrice = calcTotal(infoCart);
+    const totalPrice = calcTotal(infoCart).toFixed(2);
     setCartData({ cartList: [...infoCart], userId: userData.id, totalPrice });
   };
 
   useEffect(() => {
     getLocalStorage();
-    fetchSellers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const postOrder = async () => {
     const endpoint = '/sales';
     setToken(getToken);
-    await request(endpoint,
+    const { newSale } = await request(endpoint,
       { deliveryAddress,
         deliveryNumber,
         sellerId: seller,
-        status: 'pending',
+        status: 'Pendente',
         ...cartData }, 'post');
-    history.push('/customer/orders');
+    setSale({ saleId: newSale.id, sellerName: arrSellers[0].name });
+    history.push(`/customer/orders/${newSale.id}`);
   };
 
   return (
