@@ -21,10 +21,12 @@ function Login() {
     localStorage.setItem('user', JSON.stringify(user));
   };
 
-  const forgetLocalStorage = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('carrinho');
-  };
+  // const forgetLocalStorage = () => {
+  //   localStorage.removeItem('user');
+  //   localStorage.removeItem('carrinho');
+  // };
+
+  const getLocalStorage = (key) => JSON.parse(localStorage.getItem(key));
 
   const validateEmail = () => {
     const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -58,7 +60,16 @@ function Login() {
   };
 
   useEffect(() => {
-    forgetLocalStorage();
+    // forgetLocalStorage();
+    const user = getLocalStorage('user');
+    if (user) {
+      switch (user.role) {
+      case 'seller': return history.push('/seller/orders');
+      case 'customer': return history.push('/customer/products');
+      case 'administrator': return history.push('/admin/manage');
+      default: break;
+      }
+    }
   }, []);
 
   return (
