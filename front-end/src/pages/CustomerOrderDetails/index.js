@@ -8,14 +8,7 @@ import DeliveryContext from '../../context/DeliveryContext';
 function CustomerOrderDetails({ match }) {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
   const { sale } = useContext(DeliveryContext);
-
-  const getCart = () => {
-    const itens = localStorage.getItem('carrinho');
-    const ans = JSON.parse(itens);
-    setProducts(ans);
-  };
 
   useEffect(() => {
     async function fetchData() {
@@ -25,8 +18,7 @@ function CustomerOrderDetails({ match }) {
       setLoading(false);
     }
     fetchData();
-    getCart();
-  }, [match.params.id, sale.saleId]);
+  }, [match.params.id]);
 
   return (
     <>
@@ -35,7 +27,7 @@ function CustomerOrderDetails({ match }) {
         <OrderDetails
           orders={ orders[0] }
           seller={ sale.sellerName }
-          products={ products }
+          products={ orders[0].products }
         />
 
       ) : (

@@ -13,22 +13,12 @@ function OrderDetails(
   products,
   seller = 'não informado' },
 ) {
-  const [itensCart, setItensCart] = useState([]);
   const [subTotal, setSubtotal] = useState(0);
 
-  const getItens = () => {
-    const itens = localStorage.getItem('carrinho');
-    const ans = JSON.parse(itens);
-    setItensCart(ans);
-  };
-
-  useEffect(() => {
-    getItens();
-  }, []);
-
   const calcSubTotal = () => {
-    const sum = itensCart.reduce((acc, value) => {
-      acc[value.name] = ((value.quantity * value.price).toFixed(2).replace(/\./, ','));
+    const sum = products.reduce((acc, value) => {
+      acc[value.name] = ((value.salesProducts.quantity * value.price).toFixed(2)
+        .replace(/\./, ','));
       return acc;
     }, {});
     setSubtotal(sum);
@@ -37,7 +27,7 @@ function OrderDetails(
   useEffect(() => {
     calcSubTotal();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itensCart]);
+  }, []);
 
   return (
     <div className="cart-list-background">
