@@ -30,7 +30,7 @@ function CustomerOrder() {
       { orders.map((order) => (<OrderCard
         key={ order.id }
         order={ order }
-        path="customers"
+        path="customer"
         required="/customer/orders/"
       />))}
     </>
