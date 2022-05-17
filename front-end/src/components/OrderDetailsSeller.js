@@ -69,7 +69,6 @@ function OrderDetailsSeller(
           <button
             data-testid={ `${path}_order_details__button-preparing-check` }
             type="button"
-            disabled={ status !== 'Preparando' }
           >
             PREPARAR PEDIDO
           </button>
