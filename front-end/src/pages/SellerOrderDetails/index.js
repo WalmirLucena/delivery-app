@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState, useContext } from 'react';
 import NavBarSeller from '../../components/NavBarSeller';
-import OrderDetails from '../../components/OrderDetails';
+import OrderDetailsSeller from '../../components/OrderDetailsSeller';
 import { request } from '../../services/requests';
 import DeliveryContext from '../../context/DeliveryContext';
 
@@ -24,10 +24,11 @@ function SellerOrderDetails({ match }) {
     <>
       <NavBarSeller />
       { !loading ? (
-        <OrderDetails
+        <OrderDetailsSeller
           orders={ orders[0] }
           seller={ sale.sellerName }
           products={ orders[0].products }
+          path="seller"
         />
       ) : (
         <h2> Carregando ...</h2>

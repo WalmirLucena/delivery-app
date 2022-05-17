@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import '../styles/CartList.css';
 
-function OrderDetails(
+function OrderDetailsSeller(
   { orders: {
     id,
     totalPrice,
@@ -12,8 +12,7 @@ function OrderDetails(
   },
   // match,
   path,
-  products,
-  seller = 'não informado' },
+  products },
 ) {
   const [subTotal, setSubtotal] = useState(0);
 
@@ -51,15 +50,6 @@ function OrderDetails(
         <div>
           <h2
             data-testid={
-              `${path}_order_details__element-order-details-label-seller-name`
-            }
-          >
-            {`P.Vend: ${seller || 'Não informado'}`}
-          </h2>
-        </div>
-        <div>
-          <h2
-            data-testid={
               `${path}_order_details__element-order-details-label-order-date`
             }
           >
@@ -77,11 +67,20 @@ function OrderDetails(
         </div>
         <div>
           <button
-            data-testid={ `${path}_order_details__button-delivery-check` }
+            data-testid={ `${path}_order_details__button-preparing-check` }
+            type="button"
+            disabled={ status !== 'Preparando' }
+          >
+            PREPARAR PEDIDO
+          </button>
+        </div>
+        <div>
+          <button
+            data-testid={ `${path}_order_details__button-dispatch-check` }
             type="button"
             disabled={ status !== 'Em Trânsito' }
           >
-            MARCAR COMO ENTREGUE
+            SAIU PARA ENTREGA
           </button>
         </div>
       </section>
@@ -154,7 +153,7 @@ function OrderDetails(
   );
 }
 
-OrderDetails.propTypes = {
+OrderDetailsSeller.propTypes = {
   orders: PropTypes.shape({
     id: PropTypes.number.isRequired,
     saleDate: PropTypes.string.isRequired,
@@ -163,7 +162,6 @@ OrderDetails.propTypes = {
     totalPrice: PropTypes.number.isRequired,
   }).isRequired,
   products: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  seller: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
 };
-export default OrderDetails;
+export default OrderDetailsSeller;
