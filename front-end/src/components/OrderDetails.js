@@ -11,13 +11,12 @@ function OrderDetails(
     status,
   },
   // match,
-  path,
   products,
   seller = 'não informado' },
 ) {
   const [subTotal, setSubtotal] = useState(0);
 
-  /* const cli = 'customer'; */
+  const cli = 'customer';
 
   const calcSubTotal = () => {
     const sum = products.reduce((acc, value) => {
@@ -42,7 +41,7 @@ function OrderDetails(
         <div>
           <h2
             data-testid={
-              `${path}_order_details__element-order-details-label-order-id`
+              `${cli}_order_details__element-order-details-label-order-id`
             }
           >
             { `PEDIDO ${id}`}
@@ -51,7 +50,7 @@ function OrderDetails(
         <div>
           <h2
             data-testid={
-              `${path}_order_details__element-order-details-label-seller-name`
+              `${cli}_order_details__element-order-details-label-seller-name`
             }
           >
             {`P.Vend: ${seller || 'Não informado'}`}
@@ -60,7 +59,7 @@ function OrderDetails(
         <div>
           <h2
             data-testid={
-              `${path}_order_details__element-order-details-label-order-date`
+              `${cli}_order_details__element-order-details-label-order-date`
             }
           >
             {moment(saleDate).format('DD/MM/YYYY')}
@@ -69,7 +68,7 @@ function OrderDetails(
         <div>
           <h2
             data-testid={
-              `${path}_order_details__element-order-details-label-delivery-status`
+              `${cli}_order_details__element-order-details-label-delivery-status`
             }
           >
             {status}
@@ -77,7 +76,7 @@ function OrderDetails(
         </div>
         <div>
           <button
-            data-testid={ `${path}_order_details__button-delivery-check` }
+            data-testid={ `${cli}_order_details__button-delivery-check` }
             type="button"
             disabled={ status !== 'Em Trânsito' }
           >
@@ -91,7 +90,7 @@ function OrderDetails(
             <div className="cart-list-content-item-number">
               <span
                 data-testid={
-                  `${path}_order_details__element-order-table-item-number-${index}`
+                  `${cli}_order_details__element-order-table-item-number-${index}`
                 }
               >
                 { index + 1}
@@ -99,7 +98,7 @@ function OrderDetails(
             </div>
             <div
               className="cart-list-content-item-name"
-              data-testid={ `${path}_order_details__element-order-table-name-${index}` }
+              data-testid={ `${cli}_order_details__element-order-table-name-${index}` }
             >
               <span>{ item.name }</span>
             </div>
@@ -108,7 +107,7 @@ function OrderDetails(
             >
               <span
                 data-testid={
-                  `${path}_order_details__element-order-table-quantity-${index}`
+                  `${cli}_order_details__element-order-table-quantity-${index}`
                 }
               >
                 { item.quantity }
@@ -120,7 +119,7 @@ function OrderDetails(
             >
               <span
                 data-testid={
-                  `${path}_order_details__element-order-table-unit-price-${index}`
+                  `${cli}_order_details__element-order-table-unit-price-${index}`
                 }
               >
                 { item.price.replace(/\./, ',') }
@@ -130,7 +129,7 @@ function OrderDetails(
             <div
               className="cart-list-content-item-subtotal"
               data-testid={
-                `${path}_order_details__element-order-table-sub-total-${index}`
+                `${cli}_order_details__element-order-table-sub-total-${index}`
               }
             >
               <span>{ subTotal && subTotal[item.name] }</span>
@@ -144,7 +143,7 @@ function OrderDetails(
         <h2>Total: R$</h2>
         <h2
           data-testid={
-            `${path}_order_details__element-order-total-price`
+            `${cli}_order_details__element-order-total-price`
           }
         >
           { totalPrice.replace(/\./, ',') }
@@ -164,6 +163,5 @@ OrderDetails.propTypes = {
   }).isRequired,
   products: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   seller: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
 };
 export default OrderDetails;

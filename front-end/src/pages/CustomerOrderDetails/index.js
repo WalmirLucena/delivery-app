@@ -29,7 +29,6 @@ function CustomerOrderDetails({ match }) {
           seller={ sale.sellerName }
           products={ orders[0].products }
           match={ match }
-          path="customer"
         />
 
       ) : (
